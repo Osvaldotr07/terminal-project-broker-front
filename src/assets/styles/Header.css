@@ -1,0 +1,22 @@
+.grid {
+  height: 80vh; 
+  background-color:black;
+  margin-right:none;
+  margin-left:none;
+  max-width: none;
+  padding: 0
+}
+
+.header__wrapper_info {
+  margin-top: 35px;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+}
+
+.header__wrapper_description {
+  margin: 80px 0 80px 0;
+  line-height: 30px;
+  font-size: 20px;
+  width: 100%;
+}

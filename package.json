@@ -3,12 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@carbon/grid": "^10.15.0",
+    "@carbon/icons-react": "^10.18.0",
+    "@storybook/addon-actions": "^6.0.21",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "carbon-components": "10.3.0",
+    "carbon-components-react": "7.3.0",
+    "carbon-icons": "7.0.7",
+    "history": "^5.0.0",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-router": "^5.2.0",
+    "react-router-dom": "5.0.0",
+    "react-scripts": "3.4.3",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
