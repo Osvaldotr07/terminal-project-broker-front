@@ -10,7 +10,7 @@ const HeroInfo = () => {
       <Grid
         narrow
         style={{
-          height: '300px',SS
+          height: '300px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
