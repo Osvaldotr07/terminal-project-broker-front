@@ -29,7 +29,7 @@ export const TitleArticle = styled.h1`
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 200px;
+  height: auto;
   padding: 15px;
 `
 
@@ -37,6 +37,4 @@ export const Description = styled.p`
   font-size: 16px;
   color: #565656;
   line-height: 24px;
-
-
 `

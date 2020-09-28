@@ -10,7 +10,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "carbon-components": "10.3.0",
-    "carbon-components-react": "7.3.0",
+    "carbon-components-react": "^7.20.0",
     "carbon-icons": "7.0.7",
     "history": "^5.0.0",
     "node-sass": "^4.14.1",

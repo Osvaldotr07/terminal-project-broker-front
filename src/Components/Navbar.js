@@ -8,7 +8,7 @@ import {
 
 import { Login20 } from '@carbon/icons-react'
 
-export const Navbar = () => (
+export const Navbar = (props) => (
   <>
     <div>
       <Header
@@ -24,9 +24,14 @@ export const Navbar = () => (
           [Brokers web]
         </HeaderName>
         <div>
-          <Button className="button-sign-in">
-            Inicio de sesión <Login20 style={{ fontSize: 16 }} />
-          </Button>
+          {
+            props.showButton ? 
+              <Button className="button-sign-in">
+                Inicio de sesión <Login20 style={{ fontSize: 16 }} />
+              </Button>
+            :
+            <></>
+          }
         </div>
       </Header>
     </div>
