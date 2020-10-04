@@ -37,4 +37,5 @@ export const Description = styled.p`
   font-size: 16px;
   color: #565656;
   line-height: 24px;
+  padding: 10px;
 `

@@ -5,11 +5,13 @@ import { Login20 } from '@carbon/icons-react';
 
 import Logo from '../assets/images/pexel-light.jpg'
 import '../assets/styles/Header.css'
+import { Link } from 'react-router-dom'
+
 
 export const Header = () => (
   <>
-    <div className="bx--grid grid">
-      <div className="bx--row" style={{ margin: 0 }}>
+    <div className="bx--grid grid" style={{margin:0}}>
+      <div className="bx--row">
         <div className="bx--col bx--col-sm-16">
           <div className="header__wrapper_info">
             <Title>IBM Application broker</Title>

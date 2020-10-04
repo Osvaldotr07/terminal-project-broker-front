@@ -3,7 +3,6 @@ import React from 'react'
 //Components
 import { Navbar } from '../Components/Navbar'
 import { Header, Article } from '../Components/Header'
-import Footer from '../Components/Footer'
 
 const Home = () => {
   return (
@@ -11,7 +10,6 @@ const Home = () => {
       <Navbar showButton={true}/>
       <Header />
       <Article />
-      <Footer />
     </>
   );
 }

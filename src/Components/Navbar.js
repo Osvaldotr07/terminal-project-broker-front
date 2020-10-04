@@ -1,14 +1,13 @@
 import React from 'react'
 
-import {
-  Header,
-  HeaderName,
-  Button,
-} from 'carbon-components-react';
+import {Button} from 'carbon-components-react';
+import {Header, HeaderName} from 'carbon-components-react/lib/components/UIShell'
 
-import { Login20 } from '@carbon/icons-react'
 
-export const Navbar = (props) => (
+import { Link } from 'react-router-dom'
+import { Login20, UserAvatarFilled32 } from '@carbon/icons-react';
+
+export const Navbar = props => (
   <>
     <div>
       <Header
@@ -17,21 +16,27 @@ export const Navbar = (props) => (
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          position: 'relative'
+          position: 'relative',
         }}
       >
-        <HeaderName href="#" prefix="IBM">
-          [Brokers web]
-        </HeaderName>
+        <Link to="/init">
+          <HeaderName href="#" prefix="IBM">
+            [Brokers web]
+          </HeaderName>
+        </Link>
         <div>
-          {
-            props.showButton ? 
-              <Button className="button-sign-in">
-                Inicio de sesión <Login20 style={{ fontSize: 16 }} />
-              </Button>
-            :
+          {props.showButton ? (
+            <Button className="button-sign-in">
+              Inicio de sesión <Login20 style={{ fontSize: 16 }} />
+            </Button>
+          ) : (
             <></>
-          }
+          )}
+          {props.isAunthenticate ? (
+            <UserAvatarFilled32 style={{ fontSize: 20, color: 'white', marginRight: 10 }} />
+          ) : (
+            <></>
+          )}
         </div>
       </Header>
     </div>
