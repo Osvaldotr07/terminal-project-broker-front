@@ -9,7 +9,6 @@ const LandingPage = () => {
     <>
       <Navbar showButton={false} isAunthenticate={true} />
       <StoryContent title="Bienvenido al Broker web application" />
-      <SideBar />
       <HeroInfo />
     </>
   );
