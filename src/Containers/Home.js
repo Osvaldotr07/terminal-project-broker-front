@@ -1,13 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 //Components
-import { Navbar } from '../Components/Navbar'
 import { Header, Article } from '../Components/Header'
 
 const Home = () => {
+  const hnndleSubmit = () => {
+
+  }
+
+  
   return (
     <>
-      <Navbar showButton={true}/>
       <Header />
       <Article />
     </>

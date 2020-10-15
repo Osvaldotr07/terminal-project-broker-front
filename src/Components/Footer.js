@@ -4,7 +4,7 @@ import { FooterWrapper, FooterUl, FooterLi } from '../assets/styles/FooterStyles
 
 const Footer = () => (
   <>
-    <FooterWrapper>
+    <FooterWrapper >
       <FooterUl>
         <FooterLi>Contacto</FooterLi>
         <FooterLi>Privacidad</FooterLi>

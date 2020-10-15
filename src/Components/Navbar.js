@@ -17,10 +17,11 @@ export const Navbar = props => (
           justifyContent: 'space-between',
           alignItems: 'center',
           position: 'relative',
+          textDecoration: 'none'
         }}
       >
-        <Link to="/init">
-          <HeaderName href="#" prefix="IBM">
+        <Link to="/init" style={{textDecoration:'none'}}>
+          <HeaderName  prefix="IBM">
             [Brokers web]
           </HeaderName>
         </Link>

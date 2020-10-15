@@ -39,3 +39,16 @@ export const Description = styled.p`
   line-height: 24px;
   padding: 10px;
 `
+
+export const TitleError404 = styled.h1`
+  font-size: 30px;
+  color: #565656;
+`
+
+export const ContainerView = styled.div`
+  width: 100%;
+  height: 83vh;
+  display: fllex;
+  justify-content: center;
+  align-items: center
+`

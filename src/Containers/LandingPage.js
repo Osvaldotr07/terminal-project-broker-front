@@ -7,7 +7,6 @@ import SideBar from '../Components/SideBar'
 const LandingPage = () => {
   return (
     <>
-      <Navbar showButton={false} isAunthenticate={true} />
       <StoryContent title="Bienvenido al Broker web application" />
       <HeroInfo />
     </>

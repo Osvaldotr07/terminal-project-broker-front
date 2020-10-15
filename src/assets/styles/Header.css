@@ -3,8 +3,13 @@
   background-color:black;
   margin-right:none;
   margin-left:none;
-  max-width: none;
+  max-width: 0;
+  width: 100%;
   padding: 0;
+}
+
+.bx--grid {
+  max-width: 100% !important;
 }
 
 .header__wrapper_info {

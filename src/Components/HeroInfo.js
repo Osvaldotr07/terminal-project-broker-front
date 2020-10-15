@@ -14,7 +14,8 @@ const HeroInfo = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: 20
+          padding: 20,
+          marginBottom: 101,
         }}
       >
         <Row>

@@ -2,14 +2,132 @@ $feature-flags: (
   grid-columns-16: true
 );
 @import "@carbon/themes/scss/themes";
-
-
 $carbon--themes: $carbon--theme--g10;
-
 @include carbon--theme();
-
 @import "carbon-components/scss/globals/scss/styles.scss";
-
 @each $bp in map-keys($carbon--grid-breakpoints){
   @include carbon--breakpoint-up($bp, $carbon--grid-breakpoints)
+}
+$feature-flags: (
+  grid-columns-16: true,
+);
+@import "@carbon/themes/scss/themes";
+@import "@carbon/colors/scss/colors";
+@import "@carbon/layout/scss/layout";
+@import "@carbon/type/scss/type";
+@import "@carbon/grid/scss/grid";
+// Use the gray 100 theme
+$carbon--theme: $carbon--theme--g10;
+@include carbon--theme();
+@import "carbon-components/scss/globals/scss/styles.scss";
+// .sidenav {
+//   margin: auto;
+//   // width: 20%;
+// }
+// .maincontent {
+//   margin: auto;
+//   // width: 80%;
+// }
+.container {
+  margin: auto;
+  margin-top: $spacing-08;
+}
+
+.form {
+  display: "flex";
+}
+
+// .bx--form-item {
+//   margin-bottom: $spacing-06;
+// }
+
+.button {
+  border: 1px maroon;
+  margin-top: $spacing-06;
+  // margin-left: $spacing-06;
+  margin-right: $spacing-05;
+  @extend .bx--col;
+  @extend .bx--col-sm-1;
+  @extend .bx--col-md-8;
+  @extend .bx--col-lg-6;
+  @extend .bx--col-xlg-6;
+}
+
+.right-aligned-buttons {
+  border: 1px red;
+  @extend .bx--row;
+  justify-content: flex-end;
+}
+
+// .button {
+//   display: flex;
+//   justify-content: right;
+//   align-items: right;
+// }
+
+.contentDiv {
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.termsAccept {
+  margin-top: $spacing-05;
+}
+
+.validateButton {
+  display: none;
+}
+.formInValid {
+  color: $text-error;
+}
+
+.formInValidation {
+  display: none;
+}
+
+.spacer {
+  margin-top: $spacing-06;
+}
+.some-space {
+  margin-left: $spacing-05;
+}
+.form-container {
+  @extend .bx--grid;
+  border: 1px green;
+}
+
+.form-field {
+  border: 1px blue;
+  @extend .bx--col;
+  @extend .bx--col-sm-4;
+  @extend .bx--col-md-8;
+  @extend .bx--col-lg-8;
+  @extend .bx--col-xlg-8;
+  margin-bottom: $spacing-06;
+}
+
+.form-fieldset {
+  border: 1px red;
+  @extend .bx--row;
+  // @extend .bx--col-sm-4;
+  // @extend .bx--col-md-8;
+  // @extend .bx--col-lg-16;
+  // @extend .bx--col-xlg-16;
+}
+
+.form-data-table {
+  @extend .bx--col;
+  @extend .bx--col-sm-4;
+  @extend .bx--col-md-8;
+  @extend .bx--col-lg-8;
+  @extend .bx--col-xlg-8;
+  margin-left: -$spacing-05;
+  margin-bottom: $spacing-05;
+}
+
+
+
+@each $bp in map-keys($carbon--grid-breakpoints) {
+  @include carbon--breakpoint-up($bp, $carbon--grid-breakpoints) {
+  }
 }
