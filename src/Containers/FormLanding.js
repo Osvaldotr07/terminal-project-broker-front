@@ -2,34 +2,73 @@ import React, { useState, useEffect, useCallback } from 'react'
 import * as yup from 'yup';
 
 import { Grid, Row, Column, Button } from 'carbon-components-react';
-import UserInfoForm from '../Components/UserInfoForm'
+import UserInfoForm from '../Components/StepsOfFormComponents/UserInfoForm'
+import TermsForm from '../Components/StepsOfFormComponents/TermsForm'
+import CompanyForm from '../Components/StepsOfFormComponents/CompanyForm'
+
 import ProgressIndicatorComponent from '../Components/ProgressIndicatorComponent'
 
 //data
-import FormDefault from '../utils/dataForm'
+import formFiledDefatult from '../utils/dataForm'
 
 //schema
-import { UserInfoSchema } from '../Schemas/formSchema'
+import { UserInfoSchema, CompanyName } from '../Schemas/formSchema'
 
 const FormLanding = () => {
-    const [step, setStep] = useState(1)
-    const [form, setForm] = useState(FormDefault)
+    const [step, setStep] = useState(2)
+    const [formData, setFormData] = useState(formFiledDefatult)
 
-    const next = () => setStep((prev) => prev + 1)
-    const back = () => setStep((prev) => prev - 1)
+    const nextStep = () => setStep((prev) => prev + 1)
+    const backStep = () => setStep((prev) => prev - 1)
 
-    const validationUserInfo = form.validate ? UserInfoSchema : null  
+    const handleSubmit = (values, direction) => {
+        console.log(values)
+        setFormData(values)
+        direction === 'back' ? backStep() : nextStep()
+    }
+
+    const validationUserInfo = formData.validate ? UserInfoSchema : null
+    const validateTerms = formData.validate ? yup.object({
+        terms: yup
+            .boolean()
+            .oneOf([true], 'Necesitas aceptar los terminos y condiciones')
+
+    }) : null
+    const validateCompany = formData.validate ? CompanyName : null
 
     const handleStep = useCallback((value) => {
         switch (value) {
             case 0:
                 return (
-                    <h1>Hello world</h1>
+                    <TermsForm
+                        setFormData={setFormData}
+                        formData={formData}
+                        validationSchema={validateTerms}
+                        handleSubmit={handleSubmit}
+                        onBack={backStep}
+                        step={step}
+                        nextStep={nextStep} />
                 )
             case 1:
                 return (
-                    <UserInfoForm setForm={setForm} formData={form} validationSchema={validationUserInfo} />
+                    <UserInfoForm
+                        setFormData={setFormData}
+                        formData={formData}
+                        validationSchema={validationUserInfo}
+                        handleSubmit={handleSubmit}
+                        onBack={backStep}
+                        step={step}
+                        nextStep={nextStep} />
                 )
+            case 2:
+                return <CompanyForm
+                    setFormData={setFormData}
+                    formData={formData}
+                    validationSchema={validateCompany}
+                    handleSubmit={handleSubmit}
+                    onBack={backStep}
+                    step={step}
+                    nextStep={nextStep} />
             default:
                 return <h1>Final</h1>
         }
@@ -40,36 +79,10 @@ const FormLanding = () => {
             <Grid style={{ margin: '10px' }}>
                 <Row>
                     <Column sm={2} md={2} lg={4}>
-                        <ProgressIndicatorComponent vertical currentIndex={step} spaceEqually />
+                        <ProgressIndicatorComponent vertical step={step} spaceEqually />
                     </Column>
                     <Column >
                         {handleStep(step)}
-                        <Column>
-                            <div style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
-                                {
-                                step > 0 ?
-                                <Button
-                                    kind="primary"
-                                    tabIndex={0}
-                                    type="submit"
-                                    onClick={() => back()}
-                                >
-                                    Back
-                                </Button>
-                                : null
-                                }
-
-                                <Button
-                                style={{marginLeft: '10px'}}
-                                    kind="primary"
-                                    tabIndex={0}
-                                    type="submit"
-                                    onClick={() => next()}
-                                >
-                                    Next
-                                </Button>
-                            </div>
-                        </Column>
                     </Column>
                 </Row>
             </Grid>

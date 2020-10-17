@@ -22,7 +22,7 @@ function App() {
           <Route component={Error404}/>
         </Switch>
       </Router>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
