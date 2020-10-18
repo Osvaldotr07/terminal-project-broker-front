@@ -1,8 +1,9 @@
 import React from 'react'
 
-import { Content } from 'carbon-components-react'
+import { Content, Button } from 'carbon-components-react'
 import LogoHero from '../assets/images/ibm-hero.jpg'
 import { TitleArticle, Description } from '../assets/styles/General-styles';
+import { Link } from 'react-router-dom'
 
 
 const StoryContent = ({title}) => {
@@ -22,6 +23,11 @@ const StoryContent = ({title}) => {
               Como usurio podras generar un formulario el cual será revisado por nuestro personal el cual dara el visto bueno y todo proceso podras verlo en este sistema mediante la opcion formulario creados en el cual podras denotar las observaciones que el validador escribió al igual que seras notificado por correo electronico al email registrado en el formulario
               <br />
               <br />
+              <Link to='/form'>
+                <Button className="button-sign-in">
+                      Crear una forma
+                </Button>
+              </Link>
             </Description>
           </div>
         </div>

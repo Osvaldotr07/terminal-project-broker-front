@@ -23,12 +23,21 @@ const UserInfoForm = (
         onBack,
         handleSubmit,
         step,
-        nextStep
+        nextStep,
+        isConfirm
     }
 ) => {
     return (
         <>
-            <WrapperForm validationSchema={validationSchema} formData={formData} step={step} onBack={onBack} nextStep={nextStep} handleSubmit={handleSubmit} setFormData={setFormData}>
+            <WrapperForm 
+            validationSchema={validationSchema} 
+            formData={formData} 
+            step={step} 
+            onBack={onBack} 
+            nextStep={nextStep} 
+            handleSubmit={handleSubmit} 
+            setFormData={setFormData} 
+            isConfirm={isConfirm}>
 
                 <Grid>
                     <TitleArticle>Información del usuario</TitleArticle>

@@ -1,27 +1,45 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-import { Grid, Row, Column } from 'carbon-components-react'
+//Componentes
+import {
+    Column,
+    Grid,
+    Row
+} from 'carbon-components-react'
 import { Field } from 'formik'
-import WrapperForm from '../WrapperForm'
-import { TextInputForm } from '../FormsComponets'
-
+import { TextInputForm, SelectInputForm } from '../FormsComponets'
 import { TitleArticle } from '../../assets/styles/General-styles'
+import WrapperForm from '../WrapperForm'
+import { countries } from 'countries-list'
 
-const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, nextStep, setFormData, isConfirm }) => {
+
+const CompanyAddress = (
+    {
+        setFormData,
+        formData,
+        validationSchema,
+        onBack,
+        handleSubmit,
+        step,
+        nextStep,
+        isConfirm
+    }
+) => {
     return (
         <>
-            <WrapperForm 
-            validationSchema={validationSchema} 
-            formData={formData} 
-            step={step} 
-            onBack={onBack} 
-            nextStep={nextStep} 
-            handleSubmit={handleSubmit} 
-            setFormData={setFormData}
-            isConfirm={isConfirm}
-            >
+            {console.log(Object.values(countries))}
+            <WrapperForm
+                validationSchema={validationSchema}
+                formData={formData}
+                step={step}
+                onBack={onBack}
+                nextStep={nextStep}
+                handleSubmit={handleSubmit}
+                setFormData={setFormData}
+                isConfirm={isConfirm}>
+
                 <Grid>
-                    <TitleArticle>Datos de la compañia</TitleArticle>
+                    <TitleArticle>Dirección de la compañia</TitleArticle>
                     <Row>
                         <Column>
                             <div className="form-fieldset">
@@ -29,8 +47,8 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                     <Field
                                         style={{ width: '300px' }}
                                         autoFocus
-                                        labelText="Nombre de la compañia"
-                                        name="companyName"
+                                        labelText="Calle"
+                                        name="addressCompany"
                                         component={TextInputForm}
                                     />
                                 </div>
@@ -41,9 +59,8 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                 <div className="form-field">
                                     <Field
                                         style={{ width: '300px' }}
-                                        autoFocus
-                                        labelText="RFC de la compañia"
-                                        name="rfcCompany"
+                                        labelText="Numero"
+                                        name="addressNumber"
                                         component={TextInputForm}
                                     />
                                 </div>
@@ -56,9 +73,35 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                 <div className="form-field">
                                     <Field
                                         style={{ width: '300px' }}
-                                        autoFocus
-                                        labelText="URL de la compañia"
-                                        name="companyUrl"
+                                        labelText="Pais"
+                                        name="countryName"
+                                        options={Object.values(countries)}
+                                        component={SelectInputForm}
+                                    />
+                                </div>
+                            </div>
+                        </Column>
+                        <Column>
+                            <div className="form-fieldset">
+                                <div className="form-field">
+                                    <Field
+                                        style={{ width: '300px' }}
+                                        labelText="Ciudad"
+                                        name="cityName"
+                                        component={TextInputForm}
+                                    />
+                                </div>
+                            </div>
+                        </Column>
+                    </Row>
+                    <Row>
+                        <Column>
+                            <div className="form-fieldset">
+                                <div className="form-field">
+                                    <Field
+                                        style={{ width: '300px' }}
+                                        labelText="Estado"
+                                        name="stateName"
                                         component={TextInputForm}
                                     />
                                 </div>
@@ -69,35 +112,8 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                 <div className="form-field">
                                     <Field
                                         style={{ width: '300px' }}
-                                        autoFocus
-                                        labelText="Numero telefonico de la compañia"
-                                        name="companyPhoneNumber"
-                                        component={TextInputForm}
-                                    />
-                                </div>
-                            </div>
-                        </Column>
-                        <Column>
-                            <div className="form-fieldset">
-                                <div className="form-field">
-                                    <Field
-                                        style={{ width: '300px' }}
-                                        autoFocus
-                                        labelText="Facebook de la compañia"
-                                        name="facebookProfile"
-                                        component={TextInputForm}
-                                    />
-                                </div>
-                            </div>
-                        </Column>
-                        <Column>
-                            <div className="form-fieldset">
-                                <div className="form-field">
-                                    <Field
-                                        style={{ width: '300px' }}
-                                        autoFocus
-                                        labelText="Twitter de la compañia"
-                                        name="twitterProfile"
+                                        labelText="Codigo postal"
+                                        name="zipName"
                                         component={TextInputForm}
                                     />
                                 </div>
@@ -110,4 +126,4 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
     )
 }
 
-export default CompanyForm
+export default CompanyAddress

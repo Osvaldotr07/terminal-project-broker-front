@@ -1,21 +1,22 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import * as yup from 'yup';
 
-import { Grid, Row, Column, Button } from 'carbon-components-react';
+import { Grid, Row, Column } from 'carbon-components-react';
 import UserInfoForm from '../Components/StepsOfFormComponents/UserInfoForm'
 import TermsForm from '../Components/StepsOfFormComponents/TermsForm'
 import CompanyForm from '../Components/StepsOfFormComponents/CompanyForm'
-
+import CompanyAddress from '../Components/StepsOfFormComponents/CompanyAddress'
+import ConfirmationData from '../Components/StepsOfFormComponents/ConfirmationData'
 import ProgressIndicatorComponent from '../Components/ProgressIndicatorComponent'
 
 //data
 import formFiledDefatult from '../utils/dataForm'
 
 //schema
-import { UserInfoSchema, CompanyName } from '../Schemas/formSchema'
+import { UserInfoSchema, CompanyName, CompanyAddressSchema } from '../Schemas/formSchema'
 
 const FormLanding = () => {
-    const [step, setStep] = useState(2)
+    const [step, setStep] = useState(3)
     const [formData, setFormData] = useState(formFiledDefatult)
 
     const nextStep = () => setStep((prev) => prev + 1)
@@ -35,6 +36,7 @@ const FormLanding = () => {
 
     }) : null
     const validateCompany = formData.validate ? CompanyName : null
+    const validateAddresss = formData.validate ? CompanyAddressSchema : null 
 
     const handleStep = useCallback((value) => {
         switch (value) {
@@ -47,7 +49,9 @@ const FormLanding = () => {
                         handleSubmit={handleSubmit}
                         onBack={backStep}
                         step={step}
-                        nextStep={nextStep} />
+                        nextStep={nextStep} 
+                        isConfirm={false}
+                        />
                 )
             case 1:
                 return (
@@ -58,7 +62,9 @@ const FormLanding = () => {
                         handleSubmit={handleSubmit}
                         onBack={backStep}
                         step={step}
-                        nextStep={nextStep} />
+                        nextStep={nextStep} 
+                        isConfirm={false}
+                        />
                 )
             case 2:
                 return <CompanyForm
@@ -68,9 +74,28 @@ const FormLanding = () => {
                     handleSubmit={handleSubmit}
                     onBack={backStep}
                     step={step}
-                    nextStep={nextStep} />
-            default:
-                return <h1>Final</h1>
+                    nextStep={nextStep} 
+                    isConfirm={false}
+                    />
+            case 3:
+                return <CompanyAddress
+                    setFormData={setFormData}
+                    formData={formData}
+                    validationSchema={validateAddresss}
+                    handleSubmit={handleSubmit}
+                    onBack={backStep}
+                    step={step}
+                    nextStep={nextStep}
+                    isConfirm={false}
+                />
+            case 4:
+                return <ConfirmationData
+                formData={formData}
+                validationSchemaUser={validationUserInfo}
+                validationSchemaCompany={validateCompany}
+                validationSchemaAddress={validateAddresss}
+                handleSubmit={handleSubmit}
+                />
         }
     })
 

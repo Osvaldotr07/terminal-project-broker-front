@@ -74,3 +74,30 @@ export const CompanyName = () => yup.object({
     twitterProfile: yup
     .string()
 })
+
+export const CompanyAddressSchema = () => yup.object({
+    addressCompany: yup
+    .string()
+    .required('La dirección es requerida')
+    .max(60, 'No se permiten mas de 60 caracteres'),
+    addressNumber: yup
+    .number()
+    .nullable()
+    .required('El numero de la dirección es requerido'),
+    countryName: yup
+    .string()
+    .required('El pais es requerido')
+    .max(30, 'Solo se permiten ingresar 30 caracteristicas'),
+    cityName: yup
+    .string()
+    .required('La ciudad es requerida')
+    .max(60, 'Solo se pueden ingresar 60 caracteres'),
+    stateName: yup
+    .string()
+    .required('El estado es requerido')
+    .max(60, 'Solo se pueden ingresar 60 caracteres'),
+    zipName: yup
+    .number()
+    .nullable()
+    .required('El codigo postal es requerido')
+})

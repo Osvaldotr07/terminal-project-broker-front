@@ -7,7 +7,7 @@ import { Button } from 'carbon-components-react'
 import SubmitButton from './SubmitButton'
 
 
-const WrapperForm = ({ formData, handleSubmit, validationSchema, step, children, onBack, setFormData }) => {
+const WrapperForm = ({ formData, handleSubmit, validationSchema, step, children, onBack, setFormData, isConfirm }) => {
     const [ direction, setDirection ] = useState(null)
     return (
         <div className="form-container">
@@ -30,7 +30,12 @@ const WrapperForm = ({ formData, handleSubmit, validationSchema, step, children,
                         <>
                             <Form noValidate="noValidate">
                                 {children}
-                                <SubmitButton step={step} setDirection={setDirection} formData={formData} setFormData={setFormData}/>
+                                <SubmitButton 
+                                step={step} 
+                                setDirection={setDirection} 
+                                formData={formData} 
+                                setFormData={setFormData} 
+                                isConfirm={isConfirm}/>
                             </Form>
                         </>
                     )

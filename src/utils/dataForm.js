@@ -1,6 +1,6 @@
 const formFiledDefatult = {
     validate: true,
-    
+    terms: true,
     name: '',
     lastName: '',
     phoneNumberUser: null,
@@ -18,7 +18,15 @@ const formFiledDefatult = {
     companyUrl: '',
     companyPhoneNumber: '',
     facebookProfile: '',
-    twitterProfile: ''
+    twitterProfile: '',
+
+    //Direction company
+    addressCompany: '',
+    addressNumber: null,
+    countryName: '',
+    cityName: '',
+    stateName: '',
+    zipName: ''
 
 }
 
