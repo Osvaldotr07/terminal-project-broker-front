@@ -101,3 +101,8 @@ export const CompanyAddressSchema = () => yup.object({
     .nullable()
     .required('El codigo postal es requerido')
 })
+
+export const LoginSchema = () => yup.object({
+    email: yup.string().email().required('El correo electronico es requerido'),
+    password: yup.string().min(8, 'El password debe de ser mayor a 8 carcateres')
+})

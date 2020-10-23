@@ -4,11 +4,27 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import {createBrowserHistory} from 'history'
+import { Provider } from 'react-redux'
+import { createStore, compose, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import { Router } from 'react-router'
+import reducer from './reducers'
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose
+const preloadedState = {}
+const store = createStore(reducer, preloadedState, composeEnhancers(applyMiddleware(thunk)))
+const history = createBrowserHistory() 
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <Provider store={store}>
+    <Router history={history}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Router>
+  </Provider>
+  ,document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

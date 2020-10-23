@@ -5,20 +5,24 @@ import Home from './Containers/Home'
 import LandingPage from './Containers/LandingPage'
 import Footer from './Components/Footer'
 import FormLanding from './Containers/FormLanding'
+import FormTable from './Containers/FormTable'
 import { Navbar } from './Components/Navbar'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Error404 from './Containers/Error404'
+import LoginPage from './Containers/LoginPage'
 
 
-function App() {
+const App = ( { isLogged } ) => {
   return (
     <div style={{position: 'relative'}}>
       <Router>
-      <Navbar showButton={false} isAunthenticate={true}/>
+      <Navbar showButton={false} isAunthenticate={false}/>
         <Switch>
           <Route path="/" component={Home} exact />
-          <Route path="/init" exact component={LandingPage} />
-          <Route path='/form' exact component={FormLanding}/>
+          <Route path="/init" exact component={isLogged ? LandingPage: LoginPage} />
+          <Route path='/form' exact component={isLogged ? FormLanding : LoginPage}/>
+          <Route path="/myforms" exact component={isLogged ? FormTable : LoginPage}/>
+          <Route path="/login" exact component={LoginPage}></Route>
           <Route component={Error404}/>
         </Switch>
       </Router>
@@ -26,5 +30,7 @@ function App() {
     </div>
   );
 }
+
+
 
 export default App;

@@ -27,9 +27,11 @@ export const Navbar = ({ showButton, isAunthenticate }) => (
         </Link>
         <div>
           {showButton ? (
-            <Button className="button-sign-in">
-              Inicio de sesión <Login20 style={{ fontSize: 16 }} />
-            </Button>
+            <Link to="/login">
+              <Button className="button-sign-in">
+                Inicio de sesión <Login20 style={{ fontSize: 16 }} />
+              </Button>
+            </Link>
           ) : (
               <></>
             )}

@@ -21,9 +21,11 @@ export const Header = () => (
                 para poder vender productos tecnologícos de IBM
               </h3>
             </div>
-            <Button>
-              Registrate <Login20 style={{ fontSize: 16 }} />
-            </Button>
+            <Link to="/login">
+              <Button>
+                Registrate <Login20 style={{ fontSize: 16 }} />
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="bx--col bx--col-sm-16" style={{ padding: 0 }}>
