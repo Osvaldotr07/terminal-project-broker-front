@@ -15,7 +15,7 @@ export const loginUser = ({ email, password }, redirectUrl) => {
     return async (dispatch) => {
         try {
             let response = await axios({
-                url: 'https://damp-tor-32976.herokuapp.com/api/auth/sign-in',
+                url: 'api/auth/sign-in',
                 method: 'post',
                 auth: {
                     username: email,
