@@ -54,6 +54,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  // "proxy": "https://damp-tor-32976.herokuapp.com/"
+  }
 }
