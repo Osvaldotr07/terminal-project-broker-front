@@ -11,6 +11,7 @@ export const setError = payload => ({
 })
 
 export const loginUser = ({ email, password }, redirectUrl) => {
+    console.log(email, password)
     return async (dispatch) => {
         try {
             let response = await axios({
