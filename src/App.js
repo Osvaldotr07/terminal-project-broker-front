@@ -17,7 +17,7 @@ const App = ({isLogged}) => {
   return (
     <div style={{position: 'relative'}}>
       <Router>
-      <Navbar showButton={isLogged.id} isAunthenticate={isLogged.id} profileName={isLogged.name}/>
+      <Navbar isLogged={isLogged}/>
         <Switch>
           <Route path="/" component={Home} exact />
           <PrivateRoute path="/init" exact component={LandingPage} />

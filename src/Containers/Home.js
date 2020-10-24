@@ -7,7 +7,6 @@ const Home = ({isLogged}) => {
   return (
     <div style={{overflowX: 'hidden'}}>
       <Header isLogged={isLogged} />
-      
       <Article />
     </div>
   );
