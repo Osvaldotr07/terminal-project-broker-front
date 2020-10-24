@@ -23,7 +23,7 @@ export const loginUser = ({ email, password }, redirectUrl) => {
                     apiKeyToken: "903e41d0538ae7a9d00e70dfab5ebfb7f75f9c9dfc0bf906b347255c51b9369c"
                 }
             })
-            console.log(response.data.user)
+            console.log(response)
             if(response.statusText){
                 const { data } = response
                 console.log(data.user)
