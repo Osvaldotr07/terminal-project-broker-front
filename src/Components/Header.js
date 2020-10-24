@@ -8,7 +8,7 @@ import '../assets/styles/Header.css'
 import { Link } from 'react-router-dom'
 
 
-export const Header = () => (
+export const Header = ({isLogged}) => (
   <>
     <div className="bx--grid grid" style={{margin:0}}>
       <div className="bx--row">
@@ -21,11 +21,16 @@ export const Header = () => (
                 para poder vender productos tecnologícos de IBM
               </h3>
             </div>
-            <Link to="/login">
-              <Button>
-                Registrate <Login20 style={{ fontSize: 16 }} />
-              </Button>
-            </Link>
+              {
+                !isLogged ? 
+                  <Link to="/login">
+                    <Button>
+                      Registrate <Login20 style={{ fontSize: 16 }} />
+                    </Button>
+                  </Link>
+                  :
+                  <></>
+              }
           </div>
         </div>
         <div className="bx--col bx--col-sm-16" style={{ padding: 0 }}>
@@ -38,7 +43,7 @@ export const Header = () => (
   </>
 );
 
-export const Article = () => (
+export const Article = ({isLogged}) => (
   <>
     <div className="bx--grid">
       <div className="bx--row">

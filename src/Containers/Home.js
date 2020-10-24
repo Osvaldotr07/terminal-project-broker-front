@@ -1,20 +1,21 @@
-import React, {useEffect} from 'react'
-
+import React from 'react'
+import { connect } from 'react-redux'
 //Components
 import { Header, Article } from '../Components/Header'
 
-const Home = () => {
-  const hnndleSubmit = () => {
-
-  }
-
-  
+const Home = ({isLogged}) => {
   return (
-    <>
-      <Header />
+    <div style={{overflowX: 'hidden'}}>
+      <Header isLogged={isLogged} />
       <Article />
-    </>
+    </div>
   );
 }
 
-export default Home
+const mapStateToProps = state => {
+  return {
+    isLogged: (state.user ? state.user.id : undefined)
+  }
+}
+
+export default connect(mapStateToProps, null)(Home)

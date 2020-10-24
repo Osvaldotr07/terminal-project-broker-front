@@ -4,27 +4,40 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import {createBrowserHistory} from 'history'
+import { createBrowserHistory } from 'history'
 import { Provider } from 'react-redux'
 import { createStore, compose, applyMiddleware } from 'redux'
+import { persistStore, persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk'
 import { Router } from 'react-router'
 import reducer from './reducers'
+import storage from 'redux-persist/lib/storage'
+import { PersistGate } from 'redux-persist/integration/react'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose
+const persistConfig = {
+  key: 'root',
+  storage
+}
+
+const persistedReducer = persistReducer(persistConfig, reducer)
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const preloadedState = {}
-const store = createStore(reducer, preloadedState, composeEnhancers(applyMiddleware(thunk)))
-const history = createBrowserHistory() 
+const store = createStore(persistedReducer, preloadedState,composeEnhancers(applyMiddleware(thunk)))
+const persistor = persistStore(store)
+const history = createBrowserHistory()
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </Router>
-  </Provider>
-  ,document.getElementById('root')
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <Router history={history}>
+          <App />
+        </Router>
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>
+  , document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

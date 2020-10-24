@@ -10,18 +10,19 @@ import { Navbar } from './Components/Navbar'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Error404 from './Containers/Error404'
 import LoginPage from './Containers/LoginPage'
+import PrivateRoute from './Containers/PrivateRoute'
+import { connect } from 'react-redux'
 
-
-const App = ( { isLogged } ) => {
+const App = ({isLogged}) => {
   return (
     <div style={{position: 'relative'}}>
       <Router>
-      <Navbar showButton={false} isAunthenticate={false}/>
+      <Navbar showButton={isLogged.id} isAunthenticate={isLogged.id} profileName={isLogged.name}/>
         <Switch>
           <Route path="/" component={Home} exact />
-          <Route path="/init" exact component={isLogged ? LandingPage: LoginPage} />
-          <Route path='/form' exact component={isLogged ? FormLanding : LoginPage}/>
-          <Route path="/myforms" exact component={isLogged ? FormTable : LoginPage}/>
+          <PrivateRoute path="/init" exact component={LandingPage} />
+          <PrivateRoute path='/form' exact component={FormLanding}/>
+          <PrivateRoute path="/myforms" exact component={FormTable}/>
           <Route path="/login" exact component={LoginPage}></Route>
           <Route component={Error404}/>
         </Switch>
@@ -31,6 +32,10 @@ const App = ( { isLogged } ) => {
   );
 }
 
+const mapStateToProps = state => {
+  return {
+    isLogged: (state.user ? state.user : undefined)
+  }
+}
 
-
-export default App;
+export default connect(mapStateToProps, null)(App);

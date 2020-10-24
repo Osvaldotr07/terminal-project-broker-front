@@ -7,7 +7,7 @@ import { Header, HeaderName } from 'carbon-components-react/lib/components/UIShe
 import { Link } from 'react-router-dom'
 import { Login20, UserAvatarFilled32 } from '@carbon/icons-react';
 
-export const Navbar = ({ showButton, isAunthenticate }) => (
+export const Navbar = ({ showButton, isAunthenticate, profileName }) => (
   <>
     <div>
       <Header
@@ -26,7 +26,7 @@ export const Navbar = ({ showButton, isAunthenticate }) => (
           </HeaderName>
         </Link>
         <div>
-          {showButton ? (
+          {!showButton ? (
             <Link to="/login">
               <Button className="button-sign-in">
                 Inicio de sesión <Login20 style={{ fontSize: 16 }} />
@@ -36,10 +36,13 @@ export const Navbar = ({ showButton, isAunthenticate }) => (
               <></>
             )}
           {isAunthenticate ? (
-            <Grid style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Row>
                 <Column sm={2} md={2}>
                   <UserAvatarFilled32 style={{ fontSize: 20, color: 'white', marginRight: 10 }} />
+                </Column>
+                <Column sm={2} md={2} >
+                  <h3 style={{fontSize: 20, color: 'white'}}>{profileName}</h3>
                 </Column>
               </Row>
             </Grid>

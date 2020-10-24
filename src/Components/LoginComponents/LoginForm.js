@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 //actions
 import { loginUser } from '../../actions'
 
-const LoginForm = ( {loginUser } ) => {
+const LoginForm = ( {loginUser, isLogged } ) => {
     const initialData = {
         email: '',
         password: ''
@@ -23,7 +23,7 @@ const LoginForm = ( {loginUser } ) => {
                 validationSchema={LoginSchema}
                 onSubmit={
                     (values, actions, errors) => {
-                       loginUser(values, "/init")
+                        loginUser(values, "/init")
                     }
                 }
             >
@@ -79,4 +79,10 @@ const mapDispatchToProps = {
     loginUser
 }
 
-export default connect(null, mapDispatchToProps)(LoginForm)
+const mapStateToProps = state => {
+    return {
+        isLogged: state.user
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
