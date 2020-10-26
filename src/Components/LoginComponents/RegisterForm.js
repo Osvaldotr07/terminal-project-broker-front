@@ -1,30 +1,31 @@
 import React from 'react'
 import { Formik, Field, Form } from 'formik'
-import { Link } from 'react-router-dom'
 import { TitleArticle } from '../../assets/styles/General-styles'
 import { TextInputForm } from '../FormsComponets'
 import { Button } from 'carbon-components-react'
-import { LoginSchema } from '../../Schemas/formSchema'
+import { ResgisterSchema } from '../../Schemas/formSchema'
 
 //redux
 import { connect } from 'react-redux'
 
 //actions
-import { loginUser } from '../../actions'
+import { registerUser } from '../../actions'
 
-const LoginForm = ({ loginUser, isLogged }) => {
+const RegisterForm = ({ registerUser }) => {
     const initialData = {
+        username: '',
         email: '',
-        password: ''
+        password: '',
+        isAdmin: false
     }
     return (
         <div className="form-container">
             <Formik
                 initialValues={initialData}
-                validationSchema={LoginSchema}
+                validationSchema={ResgisterSchema}
                 onSubmit={
                     (values, actions, errors) => {
-                        loginUser(values, "/init")
+                        registerUser(values, "/login")
                     }
                 }
             >
@@ -34,14 +35,25 @@ const LoginForm = ({ loginUser, isLogged }) => {
                         validateForm
                     }) => (
                             <>
-                                <TitleArticle>Iniciar sesión</TitleArticle>
+                                <TitleArticle>Crear cuenta</TitleArticle>
                                 <Form>
                                     <div className="form-fieldset">
                                         <div className="form-field">
                                             <Field
                                                 style={{ width: '300px' }}
                                                 autoFocus
-                                                labelText="Usuario"
+                                                labelText="Nombre de usuario"
+                                                name="username"
+                                                component={TextInputForm}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="form-fieldset">
+                                        <div className="form-field">
+                                            <Field
+                                                style={{ width: '300px' }}
+                                                autoFocus
+                                                labelText="Email"
                                                 name="email"
                                                 component={TextInputForm}
                                             />
@@ -64,17 +76,8 @@ const LoginForm = ({ loginUser, isLogged }) => {
                                         kind="primary"
                                         type='submit'
                                     >
-                                        Enviar
+                                        Crear
                                     </Button>
-                                    <Link to="/register">
-                                        <Button
-                                            style={{ marginLeft: '10px' }}
-                                            kind="primary"
-                                            type='submit'
-                                        >
-                                            Crear cuenta
-                                        </Button>
-                                    </Link>
                                 </Form>
                             </>
                         )
@@ -86,13 +89,9 @@ const LoginForm = ({ loginUser, isLogged }) => {
 }
 
 const mapDispatchToProps = {
-    loginUser
+    registerUser
 }
 
-const mapStateToProps = state => {
-    return {
-        isLogged: state.user
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+
+export default connect(null, mapDispatchToProps)(RegisterForm)

@@ -11,7 +11,6 @@ export const setError = payload => ({
 })
 
 export const loginUser = ({ email, password }, redirectUrl) => {
-    console.log(email, password)
     return async (dispatch) => {
         try {
             let response = await axios({
@@ -23,10 +22,8 @@ export const loginUser = ({ email, password }, redirectUrl) => {
                 auth: {
                     username: email,
                     password,
-                    apiKeyToken: "903e41d0538ae7a9d00e70dfab5ebfb7f75f9c9dfc0bf906b347255c51b9369c"
                 }
             })
-            console.log(response)
             if(response.statusText){
                 const { data } = response
                 console.log(data.user)
@@ -39,7 +36,25 @@ export const loginUser = ({ email, password }, redirectUrl) => {
             }
         }
         catch (err) {
-            console.log(err)
+            dispatch(setError(err))
+        }
+    }
+}
+
+
+export const registerUser = (payload, redirectUrl) => {
+    return async (dispatch) => {
+        console.log(payload)
+        try{
+            let response = await axios.post('https://damp-tor-32976.herokuapp.com/api/auth/sign-up', payload)
+            console.log(response)
+            if(response.statusText) {
+                dispatch(registerUser(response.data))
+                window.location.href = redirectUrl
+            }
+        }
+        catch(err){
+
         }
     }
 }

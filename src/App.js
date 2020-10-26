@@ -10,6 +10,7 @@ import { Navbar } from './Components/Navbar'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Error404 from './Containers/Error404'
 import LoginPage from './Containers/LoginPage'
+import RegisterPage from './Containers/RegisterPage'
 import PrivateRoute from './Containers/PrivateRoute'
 import { connect } from 'react-redux'
 
@@ -23,7 +24,8 @@ const App = ({isLogged}) => {
           <PrivateRoute path="/init" exact component={LandingPage} />
           <PrivateRoute path='/form' exact component={FormLanding}/>
           <PrivateRoute path="/myforms" exact component={FormTable}/>
-          <Route path="/login" exact component={LoginPage}></Route>
+          <Route path="/login" exact component={isLogged ? LandingPage : LoginPage} />
+          <Route path="/register" exact component={isLogged ? LandingPage : RegisterPage} />
           <Route component={Error404}/>
         </Switch>
       </Router>
