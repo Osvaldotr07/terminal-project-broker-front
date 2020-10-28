@@ -13,12 +13,19 @@ import LoginPage from './Containers/LoginPage'
 import RegisterPage from './Containers/RegisterPage'
 import PrivateRoute from './Containers/PrivateRoute'
 import { connect } from 'react-redux'
+import CustomModal from './Components/Modal'
+import SideBar from './Components/SideBar'
 
 const App = ({isLogged}) => {
   return (
-    <div style={{position: 'relative'}}>
+    <div style={{position: 'absolute'}}>
       <Router>
-      <Navbar isLogged={isLogged}/>
+      {
+        !isLogged ? 
+          <Navbar isLogged={isLogged}/>
+        :
+        <SideBar isLogged={isLogged} />
+      }
         <Switch>
           <Route path="/" component={Home} exact />
           <PrivateRoute path="/init" exact component={LandingPage} />

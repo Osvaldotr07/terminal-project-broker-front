@@ -16,7 +16,7 @@ const ProgressIndicartorComponent = ({
     }
 
     return (
-        <Content>
+        <Content style={{marginTop: 20}}>
             <div className="bx--grid maincontent">
                 <div className="bx--row form-container">
                     <div className="bx--col-md-16">

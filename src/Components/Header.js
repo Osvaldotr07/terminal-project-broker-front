@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 
 export const Header = ({isLogged}) => (
   <>
-    <div className="bx--grid grid" style={{margin:0}}>
+    <div className="bx--grid grid" style={{margin:0, marginTop: 30}}>
       <div className="bx--row">
         <div className="bx--col bx--col-sm-16">
           <div className="header__wrapper_info">

@@ -35,20 +35,6 @@ export const Navbar = ({ isLogged  }) => (
           ) : (
               <></>
             )}
-          {isLogged  ? (
-            <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Row>
-                <Column >
-                  <UserAvatarFilled32 style={{ fontSize: 20, color: 'white' }} />
-                </Column>
-                <Column  >
-                  <Menu32 style={{fontSize: 20, color: 'white'}} />
-                </Column>
-              </Row>
-            </Grid>
-          ) : (
-              <></>
-            )}
         </div>
       </Header>
     </div>
