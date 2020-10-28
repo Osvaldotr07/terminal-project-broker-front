@@ -18,7 +18,7 @@ import SideBar from './Components/SideBar'
 
 const App = ({isLogged}) => {
   return (
-    <div style={{position: 'absolute'}}>
+    <div style={{position: 'relative'}}>
       <Router>
       {
         !isLogged ? 

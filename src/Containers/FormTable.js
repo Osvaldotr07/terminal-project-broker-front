@@ -63,7 +63,7 @@ const FormTable = ({ title = "Solicitudes registradas" }) => {
                                 <TableToolbarContent>
                                     <TableToolbarSearch
                                     />
-                                    <Link to='/form'>
+                                    <Link to='/form' style={{textDecoration: 'none'}}>
                                         <Button
                                             // onClick={props.add}
                                             size="medium"
