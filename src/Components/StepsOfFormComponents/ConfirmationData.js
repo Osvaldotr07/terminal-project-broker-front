@@ -49,4 +49,4 @@ const ConfirmationData = (
 }
 
 
-export default connect(null, null)(ConfirmationData)
+export default ConfirmationData

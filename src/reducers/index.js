@@ -14,6 +14,9 @@ const reducer = (state, action) => {
             }
         case 'DESTROY_SESSION':
            return state
+        
+        default:
+            return state
     }
 }
 export default reducer
