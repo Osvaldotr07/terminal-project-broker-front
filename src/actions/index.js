@@ -79,26 +79,26 @@ export const registerUser = (payload, redirectUrl) => {
     }
 }
 
-export const createOneForm = (payload, redirectUrl, token) => {
-    return async (dispatch) => {
-        try {
-            let response = await axios('/api/forms', {
-                method: 'post',
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    Authorization: `Bearer ${token}`
-                },
-                body: JSON.stringify(payload),
-            })
+// export const createOneForm = (payload, redirectUrl, token) => {
+//     return async (dispatch) => {
+//         try {
+//             let response = await axios('/api/forms', {
+//                 method: 'post',
+//                 headers: {
+//                     "Access-Control-Allow-Origin": "*",
+//                     Authorization: `Bearer ${token}`
+//                 },
+//                 body: JSON.stringify(payload),
+//             })
 
-            if(response.statusText){
-                dispatch(setDataTable(response.data))
+//             if(response.statusText){
+//                 dispatch(setDataTable(response.data))
                 
 
-            }
-        }
-        catch(err){
+//             }
+//         }
+//         catch(err){
 
-        }
-    }
-}
+//         }
+//     }
+// }
