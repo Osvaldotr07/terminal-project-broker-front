@@ -27,9 +27,9 @@ const App = ({isLogged}) => {
       }
         <Switch>
           <Route path="/" component={Home} exact />
-          <PrivateRoute path="/init" exact component={LandingPage} />
-          <PrivateRoute path='/form' exact component={FormLanding}/>
-          <PrivateRoute path="/myforms" exact component={FormTable}/>
+          <PrivateRoute path="/init" exact component={LandingPage} isLogged={isLogged}/>
+          <PrivateRoute path='/form' exact component={FormLanding} isLogged={isLogged}/>
+          <PrivateRoute path="/myforms" exact component={FormTable} isLogged={isLogged}/>
           <Route path="/login" exact component={isLogged ? LandingPage : LoginPage} />
           <Route path="/register" exact component={isLogged ? LandingPage : RegisterPage} />
           <Route component={Error404}/>

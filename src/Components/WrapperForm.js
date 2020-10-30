@@ -10,7 +10,7 @@ import SubmitButton from './SubmitButton'
 const WrapperForm = ({ formData, handleSubmit, validationSchema, step, children, onBack, setFormData, isConfirm }) => {
     const [ direction, setDirection ] = useState(null)
     return (
-        <div className="form-container">
+        <div className="form-container" style={{marginTop: 70}}>
             <Formik
                 initialValues={formData}
                 onSubmit={(values, actions, errors) => {
