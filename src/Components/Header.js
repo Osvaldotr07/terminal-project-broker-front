@@ -10,12 +10,12 @@ import { Link } from 'react-router-dom'
 
 export const Header = ({isLogged}) => (
   <>
-    <div className="bx--grid grid" style={{margin:0, marginTop: 30}}>
+    <div className="bx--grid grid" style={{margin:0}}>
       <div className="bx--row">
         <div className="bx--col bx--col-sm-16">
-          <div className="header__wrapper_info">
+          <div className="header__wrapper_info" style={{marginTop: '70px'}}>
             <Title>IBM Application broker</Title>
-            <div className="header__wrapper_description">
+            <div className="header__wrapper_description" >
               <h3>
                 Una forma mas rapida de poder hacer el proceso, <br />
                 para poder vender productos tecnologícos de IBM

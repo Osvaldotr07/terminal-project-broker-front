@@ -9,11 +9,14 @@ import {
 
 } from 'carbon-components-react'
 
-import { WrapperModal, TitleBar, WrapperMenu, MenuContainer, MenuItem } from '../assets/styles/ModalStyle'
+import { onLogout } from '../actions/index'
+import { connect } from 'react-redux'
+
+import { WrapperModal, TitleBar, WrapperMenu, MenuContainer, MenuItem, ItemSideBar } from '../assets/styles/ModalStyle'
 
 import { Search20, AppSwitcher20, Notification20, UserAvatarFilled32, Report16, Catalog16 } from '@carbon/icons-react'
 
-const SideBar = ({ isLogged }) => {
+const SideBar = ({ isLogged, onLogout }) => {
     const [able, setAble] = useState(false)
 
     let handleNavbar = () => {
@@ -63,9 +66,24 @@ const SideBar = ({ isLogged }) => {
                     <UserAvatarFilled32 style={{ fontSize: 20, color: 'white' }} />
                     <TitleBar>{isLogged.name}</TitleBar>
                 </WrapperModal>
+                <WrapperModal style={{justifyItems: 'flex-start', alignItems: 'flex-start'}}>
+                    <ItemSideBar>Perfil</ItemSideBar>
+                    <ItemSideBar>Configuraciones</ItemSideBar>
+                    <ItemSideBar
+                        onClick={() => onLogout()}
+                    >
+                    Cerrar sesión
+                    </ItemSideBar>
+                </WrapperModal>
             </HeaderPanel>
         </Header>
     )
 }
 
-export default SideBar
+const mapDispatchToProps = {
+    onLogout
+}
+
+
+
+export default connect(null, mapDispatchToProps)(SideBar)

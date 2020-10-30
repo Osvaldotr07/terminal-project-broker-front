@@ -1,16 +1,7 @@
 $feature-flags: (
   grid-columns-16: true
 );
-@import "@carbon/themes/scss/themes";
-$carbon--themes: $carbon--theme--g10;
-@include carbon--theme();
-@import "carbon-components/scss/globals/scss/styles.scss";
-@each $bp in map-keys($carbon--grid-breakpoints){
-  @include carbon--breakpoint-up($bp, $carbon--grid-breakpoints)
-}
-$feature-flags: (
-  grid-columns-16: true,
-);
+
 @import "@carbon/themes/scss/themes";
 @import "@carbon/colors/scss/colors";
 @import "@carbon/layout/scss/layout";

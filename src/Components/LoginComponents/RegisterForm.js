@@ -13,7 +13,7 @@ import { registerUser } from '../../actions'
 
 const RegisterForm = ({ registerUser }) => {
     const initialData = {
-        username: '',
+        name: '',
         email: '',
         password: '',
         isAdmin: false
@@ -43,7 +43,7 @@ const RegisterForm = ({ registerUser }) => {
                                                 style={{ width: '300px' }}
                                                 autoFocus
                                                 labelText="Nombre de usuario"
-                                                name="username"
+                                                name="name"
                                                 component={TextInputForm}
                                             />
                                         </div>

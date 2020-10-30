@@ -43,4 +43,11 @@ export const MenuItem = styled.li`
     margin-right: 15px;
 `
 
+export const ItemSideBar = styled.div`
+    font-size: 1.2em;
+    color: #569cff;
+    margin-top: 10px;
+    padding: 10px;
+    cursor:pointer;
+`
 
