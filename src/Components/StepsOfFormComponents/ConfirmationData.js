@@ -5,7 +5,8 @@ import {
     Button
 } from 'carbon-components-react'
 
-import { Formik, Field, Form } from 'formik' 
+import { Formik, Field, Form } from 'formik'
+import { connect } from 'react-redux'
 
 //Components
 import UserInfoForm from './UserInfoForm'
@@ -17,7 +18,7 @@ const ConfirmationData = (
         formData,
         validationSchemaUser,
         validationSchemaCompany,
-        validationSchemaAddress
+        validationSchemaAddress,
     }
 ) => {
     return (
@@ -28,7 +29,7 @@ const ConfirmationData = (
 
            <Formik
             initialValues={formData}
-            onSubmit={() => console.log(formData)}
+            onSubmit={() => console.log(0)}
            >
                {({handleSubmit, isSubmiting}) => (
                    <Form>
@@ -47,4 +48,5 @@ const ConfirmationData = (
     )
 }
 
-export default ConfirmationData
+
+export default connect(null, null)(ConfirmationData)

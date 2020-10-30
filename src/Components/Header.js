@@ -23,7 +23,7 @@ export const Header = ({isLogged}) => (
             </div>
               {
                 !isLogged ? 
-                  <Link to="/login">
+                  <Link to="/register">
                     <Button>
                       Registrate <Login20 style={{ fontSize: 16 }} />
                     </Button>

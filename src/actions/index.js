@@ -23,11 +23,16 @@ export const onLogout = () => {
     }
 }
 
+export const setDataTable = payload => ({
+    type: 'SET_DATA_TABLE',
+    payload
+})
+
 export const loginUser = ({ email, password }, redirectUrl) => {
     return async (dispatch) => {
         try {
             let response = await axios({
-                url: '/api/auth/sign-in',
+                url: 'https://damp-tor-32976.herokuapp.com/api/auth/sign-in',
                 method: 'post',
                 headers: {
                     "Access-Control-Allow-Origin": "*"
@@ -39,13 +44,17 @@ export const loginUser = ({ email, password }, redirectUrl) => {
             })
             if(response.statusText){
                 const { data } = response
-                console.log(data)
                 document.cookie = `email=${data.user.email}`
                 document.cookie = `name=${data.user.name}`
                 document.cookie = `id=${data.user.id}`
+                document.cookie = `toke=${data.token}`
 
-                dispatch(loginRequest(data.user))
-                // window.location.href = redirectUrl
+                dispatch(loginRequest({
+                    user: data.user,
+                    token: data.token
+
+                }))
+                window.location.href = redirectUrl
             }
         }
         catch (err) {
@@ -57,13 +66,35 @@ export const loginUser = ({ email, password }, redirectUrl) => {
 
 export const registerUser = (payload, redirectUrl) => {
     return async (dispatch) => {
-        console.log(payload)
         try{
             let response = await axios.post('https://damp-tor-32976.herokuapp.com/api/auth/sign-up', payload)
-            console.log(response)
             if(response.statusText) {
                 dispatch(registerUser(response.data))
                 window.location.href = redirectUrl
+            }
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+}
+
+export const createOneForm = (payload, redirectUrl, token) => {
+    return async (dispatch) => {
+        try {
+            let response = await axios('/api/forms', {
+                method: 'post',
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify(payload),
+            })
+
+            if(response.statusText){
+                dispatch(setDataTable(response.data))
+                
+
             }
         }
         catch(err){
