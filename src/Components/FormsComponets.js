@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { FieldProps, getIn } from 'formik'
 import { TextInput, SelectItem, Select } from 'carbon-components-react'
 import {
     FormHelperText,
     FormControl
 } from '@material-ui/core'
-import {getEmojiFlag, getUnicode} from 'countries-list'
 
 export const TextInputForm = ({field, form, ...props}) => {
     const errorText = getIn(form.touched, field.name)  && getIn(form.errors, field.name)

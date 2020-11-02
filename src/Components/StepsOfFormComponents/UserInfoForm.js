@@ -6,10 +6,10 @@ import {
     Grid,
     Row
 } from 'carbon-components-react'
-import {Field} from 'formik'
+import {Field, setFieldValue} from 'formik'
 
 import { TextInputForm } from '../FormsComponets'
-
+import { connect } from 'react-redux'
 
 import { TitleArticle } from '../../assets/styles/General-styles'
 
@@ -24,7 +24,8 @@ const UserInfoForm = (
         handleSubmit,
         step,
         nextStep,
-        isConfirm
+        isConfirm,
+        email
     }
 ) => {
     return (
@@ -102,6 +103,7 @@ const UserInfoForm = (
                                         style={{ width: '300px' }}
                                         labelText="Correo electronico"
                                         name="userEmail"
+                                        value={email} 
                                         component={TextInputForm}
                                     />
                                 </div>
@@ -114,7 +116,6 @@ const UserInfoForm = (
                                         style={{ width: '300px' }}
                                         labelText="Fecha de aplicación"
                                         name="applicationDate"
-                                        disabled
                                         value={new Date()}
                                         tabIndex="-1"
                                         component={TextInputForm}
@@ -182,4 +183,10 @@ const UserInfoForm = (
     )
 }
 
-export default UserInfoForm
+const mapStateToProps = ({data}) => {
+    return {
+        email: data.user.email
+    }
+}
+
+export default connect(mapStateToProps, null)(UserInfoForm)

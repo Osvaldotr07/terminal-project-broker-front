@@ -15,9 +15,10 @@ import PrivateRoute from './Containers/PrivateRoute'
 import { connect } from 'react-redux'
 import SideBar from './Components/SideBar'
 
-const App = ({isLogged}) => {
+const App = ({isLogged, email}) => {
   return (
     <div style={{position: 'relative'}}>
+      {console.log(email)}
       <Router>
       {
         !isLogged ? 
@@ -40,9 +41,9 @@ const App = ({isLogged}) => {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    isLogged: (state.user ? state.user : undefined)
+    isLogged: (state.data ? state.data.user : undefined),
   }
 }
 

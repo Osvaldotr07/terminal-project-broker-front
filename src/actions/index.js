@@ -28,6 +28,11 @@ export const setDataTable = payload => ({
     payload
 })
 
+export const getDataTable = payload => ({
+    type: 'GET_ALL_FORMS',
+    payload
+})
+
 export const loginUser = ({ email, password }, redirectUrl) => {
     return async (dispatch) => {
         try {
@@ -49,7 +54,7 @@ export const loginUser = ({ email, password }, redirectUrl) => {
                 document.cookie = `id=${data.user.id}`
                 document.cookie = `token=${data.token}`
 
-                dispatch(loginRequest(data.user))
+                dispatch(loginRequest(data))
                 window.location.href = redirectUrl
             }
         }
@@ -75,26 +80,71 @@ export const registerUser = (payload, redirectUrl) => {
     }
 }
 
-// export const createOneForm = (payload, redirectUrl, token) => {
-//     return async (dispatch) => {
-//         try {
-//             let response = await axios('/api/forms', {
-//                 method: 'post',
-//                 headers: {
-//                     "Access-Control-Allow-Origin": "*",
-//                     Authorization: `Bearer ${token}`
-//                 },
-//                 body: JSON.stringify(payload),
-//             })
+export const createOneForm = (payload, redirectUrl, token) => {
+    return async (dispatch) => {
+        try {
+            let response = await axios('https://damp-tor-32976.herokuapp.com/api/forms/createForm', {
+                method: 'post',
+                headers: {  
+                    "Access-Control-Allow-Origin": "*",
+                    Authorization: `Bearer ${token}`
+                },
+                data: payload,
+            })
 
-//             if(response.statusText){
-//                 dispatch(setDataTable(response.data))
-                
+            if(response.statusText){
+                dispatch(setDataTable(response.data))
+                setTimeout(() => {
+                    window.location.href = redirectUrl
+                }, 5000)
+            }
+        }
+        catch(err){
+            dispatch(onLogout())
+        }
+    }
+}
 
-//             }
-//         }
-//         catch(err){
+export const getForms = (token, email) => {
+    return async(dispatch) => {
+        try{
+            let response = await axios('https://damp-tor-32976.herokuapp.com/api/forms', {
+                method: 'post',
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    Authorization: `Bearer ${token}`
+                },
+                data: {email}
+            })
 
-//         }
-//     }
-// }
+            if(response.statusText){
+                const { data } = response
+                dispatch(getDataTable(data))
+            }
+        }
+        catch(err){
+            console.log(err)
+            dispatch(onLogout())
+        }
+    }
+}
+
+export const deleteForm = (token, id) => {
+    return async (dispatch) => {
+        console.log(id)
+        try {
+            let response = await axios(`https://damp-tor-32976.herokuapp.com/api/forms/${id}`, {
+                method: 'delete',
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    Authorization: `Bearer ${token}`
+                },
+            })
+
+            console.log(response)
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+}

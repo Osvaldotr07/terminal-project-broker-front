@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 //Componentes
 import {
@@ -7,6 +7,7 @@ import {
 
 import { Formik, Field, Form } from 'formik'
 import { connect } from 'react-redux'
+import { createOneForm } from '../../actions/index'
 
 //Components
 import UserInfoForm from './UserInfoForm'
@@ -19,6 +20,9 @@ const ConfirmationData = (
         validationSchemaUser,
         validationSchemaCompany,
         validationSchemaAddress,
+        createOneForm,
+        tk,
+        email
     }
 ) => {
     return (
@@ -29,7 +33,12 @@ const ConfirmationData = (
 
            <Formik
             initialValues={formData}
-            onSubmit={() => console.log(0)}
+            onSubmit={(values) => {
+                values.userEmail = email
+                values.applicationDate = new Date()
+                values.status = 'Enviado'
+                createOneForm(values, '/myforms', tk)
+            }}
            >
                {({handleSubmit, isSubmiting}) => (
                    <Form>
@@ -48,5 +57,16 @@ const ConfirmationData = (
     )
 }
 
+const mapDispatchToProps = {
+    createOneForm
+}
 
-export default ConfirmationData
+const mapStateToProps = ({data}) => {
+    return {
+        tk: data.token,
+        email: data.user.email
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ConfirmationData)

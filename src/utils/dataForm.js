@@ -10,7 +10,7 @@ const formFiledDefatult = {
     phoneOwner: null,
     ownerName: '',
     ownerLastName: '',
-    applicationDate: 'null',
+    applicationDate: undefined,
 
     //company details
     companyName: '',

@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState ,useEffect} from 'react'
+import { connect } from 'react-redux'
+import { getForms,deleteForm } from '../actions/index'
+
 import {
     DataTable,
     TableContainer,
@@ -21,7 +24,6 @@ const actionButton = {
     border: 'none',
     background: 'none'
 }
-
 const rows = [
     {
         name: 'Nuevo formulario',
@@ -29,7 +31,6 @@ const rows = [
         userEmail: 'osvaldo@ibm.com'
 
     },
-
 ]
 
 const headers = [{
@@ -45,7 +46,24 @@ const headers = [{
 }
 ]
 
-const FormTable = ({ title = "Solicitudes registradas" }) => {
+const FormTable = ({ title = "Solicitudes registradas", forms, getForms, tk, email, deleteForm }) => {
+
+    const [rows, setRows ] = useState([])
+
+    useEffect(() => {
+        getForms(tk, email)
+        let formFixed = forms.data ?  forms.data.map(item => {
+            return {
+                id: item._id,
+                name: item.name,
+                status: item.status,
+                userEmail: item.userEmail
+            }
+        })
+        : []
+        setRows(formFixed)
+    }, [rows])
+
     return (
         <div className="form-container">
             <DataTable
@@ -96,7 +114,13 @@ const FormTable = ({ title = "Solicitudes registradas" }) => {
                                             <TableCell className="bx--table-column-menu">
                                                 <OverflowMenu flipped style={actionButton}>
                                                     <OverflowMenuItem itemText="Editar">Editar</OverflowMenuItem>
-                                                    <OverflowMenuItem itemText="Eliminar">Eliminar</OverflowMenuItem>
+                                                    <OverflowMenuItem itemText="Eliminar" onClick={
+                                                        () => {
+                                                            deleteForm(tk, row.id)
+                                                            getForms(tk, email)
+                                                        }
+                                                    }
+                                                    >Eliminar</OverflowMenuItem>
                                                 </OverflowMenu>
                                             </TableCell>
                                         </TableRow>
@@ -110,4 +134,17 @@ const FormTable = ({ title = "Solicitudes registradas" }) => {
     )
 }
 
-export default FormTable
+const mapDispatchToProps = {
+    getForms,
+    deleteForm
+}
+
+const mapStateToProps = state => {
+    return {
+        forms: state.forms ? state.forms : [],
+        tk: state.data.token,
+        email: state.data.user.email
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormTable)

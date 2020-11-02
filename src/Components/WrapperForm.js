@@ -21,11 +21,10 @@ const WrapperForm = ({ formData, handleSubmit, validationSchema, step, children,
             >
                 {
                     ({
-                        values,
                         validateForm,
                         errors,
                         setFieldValue,
-                        touched
+                        touched,
                     }) => (
                         <>
                             <Form noValidate="noValidate">
@@ -35,7 +34,8 @@ const WrapperForm = ({ formData, handleSubmit, validationSchema, step, children,
                                 setDirection={setDirection} 
                                 formData={formData} 
                                 setFormData={setFormData} 
-                                isConfirm={isConfirm}/>
+                                isConfirm={isConfirm}
+                                />
                             </Form>
                         </>
                     )

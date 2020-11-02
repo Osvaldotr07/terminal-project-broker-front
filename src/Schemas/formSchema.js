@@ -24,10 +24,6 @@ export const UserInfoSchema = () => yup.object({
     .string()
     .required('El rol del trabajo es requerido')
     .max(60, 'Solo se permiten 60 caracteres'),
-    userEmail: yup
-    .string()
-    .required('El correo debe de ser requerido')
-    .email('El correo electronico no es valido ejemplo(example@exa.com)'),
     phoneOwner: yup
     .string()
     .required('El numero es requerido')
