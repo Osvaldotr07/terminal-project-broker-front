@@ -62,7 +62,7 @@ const FormTable = ({ title = "Solicitudes registradas", forms, getForms, tk, ema
         })
         : []
         setRows(formFixed)
-    }, [rows])
+    }, rows)
 
     return (
         <div className="form-container">
