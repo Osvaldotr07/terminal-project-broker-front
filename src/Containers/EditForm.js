@@ -4,7 +4,7 @@ import { Button } from "carbon-components-react";
 
 import { Formik, Form } from "formik";
 import { connect } from "react-redux";
-
+import { handleDataSubmit } from '../actions/index'
 //Components
 import UserInfoForm from "../Components/StepsOfFormComponents/UserInfoForm";
 import CompanyAddress from "../Components/StepsOfFormComponents/CompanyAddress";
@@ -14,12 +14,14 @@ import {
   CompanyName,
   CompanyAddressSchema,
 } from "../Schemas/formSchema";
-const EditForm = ({ item, tk, email }) => {
+
+const EditForm = ({ item, tk, email, handleDataSubmit }) => {
   return (
     <>
       <div className="form-container" style={{ marginTop: 70, marginBottom: 30 }}>
         <UserInfoForm
           formData={item}
+          handleSubmit={handleDataSubmit}
           validationSchema={UserInfoSchema}
           isConfirm={true}
         />
@@ -57,6 +59,10 @@ const EditForm = ({ item, tk, email }) => {
   );
 };
 
+const mapDispatchToProps = {
+  handleDataSubmit
+}
+
 const mapStateToProps = (state) => {
   return {
     tk: state.data.token,
@@ -65,4 +71,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(EditForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EditForm);

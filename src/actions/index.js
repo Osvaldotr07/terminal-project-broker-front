@@ -38,6 +38,11 @@ export const getDataTable = payload => ({
     payload
 })
 
+export const handleDataSubmit = payload => ({
+    type: 'HANDLE_DATA_SUBMIT',
+    payload
+})
+
 export const loginUser = ({ email, password }, redirectUrl) => {
     return async (dispatch) => {
         try {

@@ -23,6 +23,12 @@ const reducer = (state ={} , action) => {
                 ...state,
                 itemFiltered: state.forms.data.filter(item => item._id===action.payload)
             }
+        case 'HANDLE_DATA_SUBMIT':
+            console.log('Hello I am in')
+            return {
+                ...state,
+                values: action.payload
+            }
         default:
             return state
     }

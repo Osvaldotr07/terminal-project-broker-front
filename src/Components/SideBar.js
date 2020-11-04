@@ -31,11 +31,6 @@ const SideBar = ({ isLogged, onLogout }) => {
             </HeaderName>
             <WrapperMenu>
                 <MenuContainer>
-                    <Link to="/form" style={{ textDecoration: 'none', color: 'white' }}>
-                        <MenuItem>
-                            <Report16 /> Crear forma
-                        </MenuItem>
-                    </Link>
                     <Link to="/myforms" style={{ textDecoration: 'none', color: 'white' }}>
                         <MenuItem>
                             <Catalog16 /> Listar formas

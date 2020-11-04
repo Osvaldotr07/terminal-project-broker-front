@@ -1,5 +1,7 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import * as yup from 'yup';
+import { connect } from 'react-redux'
+import { handleDataSubmit } from '../actions/index'
 
 import { Grid, Row, Column } from 'carbon-components-react';
 import UserInfoForm from '../Components/StepsOfFormComponents/UserInfoForm'
@@ -15,9 +17,9 @@ import formFiledDefatult from '../utils/dataForm'
 //schema
 import { UserInfoSchema, CompanyName, CompanyAddressSchema } from '../Schemas/formSchema'
 
-const FormLanding = () => {
+const FormLanding = ({ item }) => {
     const [step, setStep] = useState(0)
-    const [formData, setFormData] = useState(formFiledDefatult)
+    const [formData, setFormData] = useState({})
 
     const nextStep = () => setStep((prev) => prev + 1)
     const backStep = () => setStep((prev) => prev - 1)
@@ -26,6 +28,10 @@ const FormLanding = () => {
         setFormData(values)
         direction === 'back' ? backStep() : nextStep()
     }
+
+    useEffect(() => {
+        setFormData(window.location.pathname === '/edit' ? item[0] : formFiledDefatult)
+    }, [formData])
 
     const validationUserInfo = formData.validate ? UserInfoSchema : null
     const validateTerms = formData.validate ? yup.object({
@@ -114,4 +120,13 @@ const FormLanding = () => {
     )
 }
 
-export default FormLanding 
+  
+  const mapStateToProps = (state) => {
+    return {
+      item:  (state.itemFiltered || {}),
+    };
+  };
+
+
+
+export default connect(mapStateToProps)(FormLanding) 

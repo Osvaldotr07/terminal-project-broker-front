@@ -6,13 +6,12 @@ import {
     FormControl
 } from '@material-ui/core'
 
+
 export const TextInputForm = ({field, form,...props}) => {
     const errorText = getIn(form.touched, field.name)  && getIn(form.errors, field.name)
     const invalidCheck = Boolean(getIn(form.touched, field.name) && getIn(form.errors, field.name))
-    console.log(form)
     return (
         <TextInput
-            onChange={() => form.handleSubmit(form.values)}
             id={field.name}
             invalidText={errorText}
             invalid={invalidCheck}

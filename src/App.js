@@ -31,7 +31,7 @@ const App = ({isLogged, email}) => {
           <PrivateRoute path="/init" exact component={LandingPage} isLogged={isLogged}/>
           <PrivateRoute path='/form' exact component={FormLanding} isLogged={isLogged}/>
           <PrivateRoute path="/myforms" exact component={FormTable} isLogged={isLogged}/>
-          <PrivateRoute path="/edit" exact component={EditForm} isLogged={isLogged}/>
+          <PrivateRoute path="/edit" exact component={FormLanding} isLogged={isLogged}/>
           <Route path="/login" exact component={isLogged ? LandingPage : LoginPage} />
           <Route path="/register" exact component={isLogged ? LandingPage : RegisterPage} />
           <Route component={Error404}/>

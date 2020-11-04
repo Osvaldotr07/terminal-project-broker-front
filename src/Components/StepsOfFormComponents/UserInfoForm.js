@@ -48,6 +48,7 @@ const UserInfoForm = (
                                 <div className="form-field">
                                     <Field
                                         style={{ width: '300px' }}
+                                        handleSubmit={handleSubmit}
                                         autoFocus
                                         labelText="Nombre"
                                         name="name"
