@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Error404 from './Containers/Error404'
 import LoginPage from './Containers/LoginPage'
 import RegisterPage from './Containers/RegisterPage'
+import EditForm from './Containers/EditForm'
 import PrivateRoute from './Containers/PrivateRoute'
 import { connect } from 'react-redux'
 import SideBar from './Components/SideBar'
@@ -18,7 +19,6 @@ import SideBar from './Components/SideBar'
 const App = ({isLogged, email}) => {
   return (
     <div style={{position: 'relative'}}>
-      {console.log(email)}
       <Router>
       {
         !isLogged ? 
@@ -31,6 +31,7 @@ const App = ({isLogged, email}) => {
           <PrivateRoute path="/init" exact component={LandingPage} isLogged={isLogged}/>
           <PrivateRoute path='/form' exact component={FormLanding} isLogged={isLogged}/>
           <PrivateRoute path="/myforms" exact component={FormTable} isLogged={isLogged}/>
+          <PrivateRoute path="/edit" exact component={EditForm} isLogged={isLogged}/>
           <Route path="/login" exact component={isLogged ? LandingPage : LoginPage} />
           <Route path="/register" exact component={isLogged ? LandingPage : RegisterPage} />
           <Route component={Error404}/>

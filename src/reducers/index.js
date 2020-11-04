@@ -18,6 +18,11 @@ const reducer = (state ={} , action) => {
                 ...state,
                 tab: action.payload
             }
+        case 'DATA_TO_UPDATE':
+            return {
+                ...state,
+                itemFiltered: state.forms.data.filter(item => item._id===action.payload)
+            }
         default:
             return state
     }

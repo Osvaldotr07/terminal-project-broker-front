@@ -27,6 +27,7 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                             <div className="form-fieldset">
                                 <div className="form-field">
                                     <Field
+                                        handleSubmit={handleSubmit}
                                         style={{ width: '300px' }}
                                         autoFocus
                                         labelText="Nombre de la compañia"
@@ -49,8 +50,8 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                 </div>
                             </div>
                         </Column>
-                    </Row>
-                    <Row>
+                    
+                    
                         <Column>
                             <div className="form-fieldset">
                                 <div className="form-field">
@@ -70,7 +71,7 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                     <Field
                                         style={{ width: '300px' }}
                                         autoFocus
-                                        labelText="Numero telefonico de la compañia"
+                                        labelText="Numero telefonico"
                                         name="companyPhoneNumber"
                                         component={TextInputForm}
                                     />

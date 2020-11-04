@@ -1,7 +1,6 @@
 import React, { useState ,useEffect} from 'react'
 import { connect } from 'react-redux'
-import { getForms,deleteForm } from '../actions/index'
-
+import { getForms,deleteForm, dataToUpdate } from '../actions/index'
 import {
     DataTable,
     TableContainer,
@@ -46,7 +45,7 @@ const headers = [{
 }
 ]
 
-const FormTable = ({ title = "Solicitudes registradas", forms, getForms, tk, email, deleteForm }) => {
+const FormTable = ({ title = "Solicitudes registradas", forms, getForms, tk, email, deleteForm, dataToUpdate }) => {
 
     const [rows, setRows ] = useState([])
 
@@ -62,7 +61,7 @@ const FormTable = ({ title = "Solicitudes registradas", forms, getForms, tk, ema
         })
         : []
         setRows(formFixed)
-    }, rows)
+    }, forms.data)
 
     return (
         <div className="form-container">
@@ -113,7 +112,14 @@ const FormTable = ({ title = "Solicitudes registradas", forms, getForms, tk, ema
                                             ))}
                                             <TableCell className="bx--table-column-menu">
                                                 <OverflowMenu flipped style={actionButton}>
-                                                    <OverflowMenuItem itemText="Editar">Editar</OverflowMenuItem>
+                                                    <Link to="/edit">
+                                                        <OverflowMenuItem itemText="Editar" onClick={() =>{
+                                                            dataToUpdate(row.id)
+                                                        }}>
+                                                        Editar
+                                                        </OverflowMenuItem>
+                                                    </Link>
+                                                    
                                                     <OverflowMenuItem itemText="Eliminar" onClick={
                                                         () => {
                                                             deleteForm(tk, row.id)
@@ -136,7 +142,8 @@ const FormTable = ({ title = "Solicitudes registradas", forms, getForms, tk, ema
 
 const mapDispatchToProps = {
     getForms,
-    deleteForm
+    deleteForm,
+    dataToUpdate
 }
 
 const mapStateToProps = state => {

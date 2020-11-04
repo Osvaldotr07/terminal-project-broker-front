@@ -5,6 +5,11 @@ export const loginRequest = payload => ({
     payload,
 })
 
+export const dataToUpdate = payload => ({
+    type: 'DATA_TO_UPDATE',
+    payload
+})
+
 export const setError = payload => ({
     type: 'SET_ERROR',
     payload

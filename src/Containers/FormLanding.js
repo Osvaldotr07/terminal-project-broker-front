@@ -23,7 +23,6 @@ const FormLanding = () => {
     const backStep = () => setStep((prev) => prev - 1)
 
     const handleSubmit = (values, direction) => {
-        console.log(values)
         setFormData(values)
         direction === 'back' ? backStep() : nextStep()
     }

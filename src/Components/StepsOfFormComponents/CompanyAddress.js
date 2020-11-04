@@ -27,7 +27,6 @@ const CompanyAddress = (
 ) => {
     return (
         <>
-            {console.log(Object.values(countries))}
             <WrapperForm
                 validationSchema={validationSchema}
                 formData={formData}
