@@ -19,7 +19,7 @@ import { UserInfoSchema, CompanyName, CompanyAddressSchema } from '../Schemas/fo
 
 const FormLanding = ({ item }) => {
     const [step, setStep] = useState(0)
-    const [formData, setFormData] = useState({})
+    const [formData, setFormData] = useState(window.location.pathname === '/edit' ? item[0] : formFiledDefatult)
 
     const nextStep = () => setStep((prev) => prev + 1)
     const backStep = () => setStep((prev) => prev - 1)
@@ -29,9 +29,9 @@ const FormLanding = ({ item }) => {
         direction === 'back' ? backStep() : nextStep()
     }
 
-    useEffect(() => {
-        setFormData(window.location.pathname === '/edit' ? item[0] : formFiledDefatult)
-    }, [formData])
+    // useEffect(() => {
+    //     setFormData(window.location.pathname === '/edit' ? item[0] : formFiledDefatult)
+    // }, [formData])
 
     const validationUserInfo = formData.validate ? UserInfoSchema : null
     const validateTerms = formData.validate ? yup.object({

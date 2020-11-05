@@ -43,6 +43,11 @@ export const handleDataSubmit = payload => ({
     payload
 })
 
+export const setUpdateForm = payload => ({
+    type: 'SET_UPDATE_DATA',
+    payload
+})
+
 export const loginUser = ({ email, password }, redirectUrl) => {
     return async (dispatch) => {
         try {
@@ -141,7 +146,6 @@ export const getForms = (token, email) => {
 
 export const deleteForm = (token, id) => {
     return async (dispatch) => {
-        console.log(id)
         try {
             let response = await axios(`https://damp-tor-32976.herokuapp.com/api/forms/${id}`, {
                 method: 'delete',
@@ -150,11 +154,34 @@ export const deleteForm = (token, id) => {
                     Authorization: `Bearer ${token}`
                 },
             })
-
-            console.log(response)
         }
         catch(err){
             console.log(err)
+            dispatch(onLogout())
+        }
+    }
+}
+
+export const updateOneForm = (payload, redirectUrl, token) => {
+    return async (dispatch) => {
+        try {
+            let response = await axios('https://damp-tor-32976.herokuapp.com/api/forms/updateForm', {
+                method: 'put',
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    Authorization: `Bearer ${token}`
+                },
+                data: payload
+            })
+            console.log(response)
+            if(response.statusText) {
+                dispatch(setUpdateForm(response.data))
+                window.location.href = redirectUrl
+            }
+        }
+        catch(err){
+            console.log(err)
+            dispatch(onLogout())
         }
     }
 }
