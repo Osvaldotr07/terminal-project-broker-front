@@ -23,17 +23,9 @@ const actionButton = {
     border: 'none',
     background: 'none'
 }
-const rows = [
-    {
-        name: 'Nuevo formulario',
-        status: 'Submited',
-        userEmail: 'osvaldo@ibm.com'
-
-    },
-]
 
 const headers = [{
-    "header": "Nombre de la empresa",
+    "header": "Nombre del propietario",
     "key": "name"
 }, {
     "header": "Estatus",
@@ -42,6 +34,10 @@ const headers = [{
 {
     "header": 'creado por',
     "key": 'userEmail'
+},
+{
+    "header": "Nombre de la Compañia",
+    "key": "companyName" 
 }
 ]
 
@@ -54,6 +50,7 @@ const FormTable = ({ title = "Solicitudes registradas", forms, getForms, tk, ema
         let formFixed = forms.data ?  forms.data.map(item => {
             return {
                 id: item._id,
+                companyName: item.companyName,
                 name: item.name,
                 status: item.status,
                 userEmail: item.userEmail

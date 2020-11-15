@@ -6,7 +6,7 @@ export const ImageWrapper = styled.figure`
   overflow:hidden;
   object-fit: cover;
   padding:0;
-  margin: 0
+  margin: 0;
 `
 
 export const Image = styled.img`
@@ -50,5 +50,5 @@ export const ContainerView = styled.div`
   height: 83vh;
   display: fllex;
   justify-content: center;
-  align-items: center
+  align-items: center;
 `

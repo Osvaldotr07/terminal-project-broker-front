@@ -1,98 +1,97 @@
-import React from 'react'
-import { Formik, Field, Form } from 'formik'
-import { Link } from 'react-router-dom'
-import { TitleArticle } from '../../assets/styles/General-styles'
-import { TextInputForm } from '../FormsComponets'
-import { Button } from 'carbon-components-react'
-import { LoginSchema } from '../../Schemas/formSchema'
+import React from "react";
+import { Formik, Field, Form } from "formik";
+import { Link } from "react-router-dom";
+import { TitleArticle } from "../../assets/styles/General-styles";
+import { TextInputForm } from "../FormsComponets";
+import { Button, Loading } from "carbon-components-react";
+import { LoginSchema } from "../../Schemas/formSchema";
 
 //redux
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 
 //actions
-import { loginUser } from '../../actions'
+import { loginUser } from "../../actions";
 
-const LoginForm = ({ loginUser, isLogged }) => {
-    const initialData = {
-        email: '',
-        password: ''
-    }
-    return (
-        <div className="form-container">
-            <Formik
-                initialValues={initialData}
-                validationSchema={LoginSchema}
-                onSubmit={
-                    (values, actions, errors) => {
-                        loginUser(values, "/init")
-                    }
-                }
-            >
-                {
-                    ({
-                        values,
-                        validateForm
-                    }) => (
-                            <>
-                                <TitleArticle>Iniciar sesión</TitleArticle>
-                                <Form>
-                                    <div className="form-fieldset">
-                                        <div className="form-field">
-                                            <Field
-                                                style={{ width: '300px' }}
-                                                autoFocus
-                                                labelText="Usuario"
-                                                name="email"
-                                                component={TextInputForm}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="form-fieldset">
-                                        <div className="form-field">
-                                            <Field
-                                                style={{ width: '300px' }}
-                                                type="password"
-                                                autoFocus
-                                                labelText="Contraseña"
-                                                name="password"
-                                                component={TextInputForm}
-                                            />
-                                        </div>
-                                    </div>
-                                    <Button
-                                        style={{ marginLeft: '10px' }}
-                                        kind="primary"
-                                        type='submit'
-                                    >
-                                        Enviar
-                                    </Button>
-                                    <Link to="/register">
-                                        <Button
-                                            style={{ marginLeft: '10px' }}
-                                            kind="primary"
-                                            type='submit'
-                                        >
-                                            Crear cuenta
-                                        </Button>
-                                    </Link>
-                                </Form>
-                            </>
-                        )
-                }
-
-            </Formik>
-        </div>
-    )
-}
+const LoginForm = ({ loginUser, isLogged, err }) => {
+  console.log(err);
+  const initialData = {
+    email: "",
+    password: "",
+  };
+  return (
+    <div className="form-container">
+      <Formik
+        initialValues={initialData}
+        validationSchema={LoginSchema}
+        onSubmit={(values, actions, errors) => {
+          loginUser(values, "/init");
+        }}
+      >
+        {({ values, validateForm }) => (
+          <>
+            <TitleArticle>Iniciar sesión</TitleArticle>
+            <Form>
+              <div className="form-fieldset">
+                <div className="form-field">
+                  <Field
+                    style={{ width: "300px" }}
+                    autoFocus
+                    labelText="Usuario"
+                    name="email"
+                    component={TextInputForm}
+                  />
+                </div>
+              </div>
+              <div className="form-fieldset">
+                <div className="form-field">
+                  <Field
+                    style={{ width: "300px" }}
+                    type="password"
+                    autoFocus
+                    labelText="Contraseña"
+                    name="password"
+                    component={TextInputForm}
+                  />
+                </div>
+              </div>
+              <Button
+                style={{ marginLeft: "10px" }}
+                kind="primary"
+                type="submit"
+              >
+                Enviar
+              </Button>
+              <Link to="/register">
+                <Button
+                  style={{ marginLeft: "10px" }}
+                  kind="primary"
+                  type="submit"
+                >
+                  Crear cuenta
+                </Button>
+              </Link>
+            </Form>
+            {err ? (
+              <p style={{ color: "red", marginTop: 10 }}>
+                Usuario o contraseña incorrectos
+              </p>
+            ) : null}
+          </>
+        )}
+      </Formik>
+    </div>
+  );
+};
 
 const mapDispatchToProps = {
-    loginUser
-}
+  loginUser,
+};
 
-const mapStateToProps = state => {
-    return {
-        isLogged: state.user
-    }
-}
+const mapStateToProps = (state) => {
+  return {
+    isLogged: state.user,
+    err: state.err,
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

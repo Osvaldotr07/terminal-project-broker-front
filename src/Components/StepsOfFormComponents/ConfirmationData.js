@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 
 //Componentes
 import {
-    Button
+    Button,
+    Loading
 } from 'carbon-components-react'
 
 import { Formik, Field, Form } from 'formik'
@@ -26,15 +27,23 @@ const ConfirmationData = (
         email
     }
 ) => {
+    const [isLoading, setIsLoading] = useState(false)
     return (
         <>
-            <UserInfoForm formData={formData} validationSchema={validationSchemaUser} isConfirm={true}/>
-            <CompanyForm formData={formData} validationSchema={validationSchemaCompany} isConfirm={true}/>
-            <CompanyAddress formData={formData} validationSchema={validationSchemaAddress} isConfirm={true}/>
+            {
+                !isLoading ?
+                    <>
+                        <UserInfoForm formData={formData} validationSchema={validationSchemaUser} isConfirm={true}/>
+                        <CompanyForm formData={formData} validationSchema={validationSchemaCompany} isConfirm={true}/>
+                        <CompanyAddress formData={formData} validationSchema={validationSchemaAddress} isConfirm={true}/>
+                    </>
+                : null
+            }
 
            <Formik
             initialValues={formData}
             onSubmit={(values) => {
+                setIsLoading(true)
                 values.userEmail = email
                 values.applicationDate = new Date()
                 values.status = 'Enviado'
@@ -43,13 +52,25 @@ const ConfirmationData = (
            >
                {({handleSubmit, isSubmiting}) => (
                    <Form>
-                    <Button
-                        className='button'
-                        type='submit'
-                        disabled={isSubmiting}
-                    >
-                        Enviar
-                    </Button>
+                    {
+                        !isLoading ? 
+                            <Button
+                                className='button'
+                                type='submit'
+                                disabled={isSubmiting}
+                            >
+                                Enviar
+                            </Button>
+                        : 
+                        <>
+                            <h1>Gracias por el registro</h1>
+                            <Loading
+                                description="Active loading indicator"
+                                withOverlay={false}
+                                small={false}
+                            />
+                        </>
+                    }
                    </Form>
                )}
 

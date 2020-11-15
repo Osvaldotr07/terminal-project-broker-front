@@ -6,6 +6,11 @@ const reducer = (state ={} , action) => {
                 ...state,
                 data: action.payload
             }
+        case 'SET_ERROR':
+            return {
+                ...state,
+                err: action.payload
+            }
         case 'DESTROY_SESSION':
            return state
         case 'GET_ALL_FORMS':
