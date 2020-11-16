@@ -64,11 +64,7 @@ const ConfirmationData = (
                         : 
                         <>
                             <h1>Gracias por el registro</h1>
-                            <Loading
-                                description="Active loading indicator"
-                                withOverlay={false}
-                                small={false}
-                            />
+                            <Loading/>
                         </>
                     }
                    </Form>

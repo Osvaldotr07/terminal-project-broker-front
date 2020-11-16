@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Field, Form } from "formik";
 import { Link } from "react-router-dom";
 import { TitleArticle } from "../../assets/styles/General-styles";
@@ -13,18 +13,26 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions";
 
 const LoginForm = ({ loginUser, isLogged, err }) => {
-  console.log(err);
   const initialData = {
     email: "",
     password: "",
   };
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
   return (
     <div className="form-container">
       <Formik
         initialValues={initialData}
         validationSchema={LoginSchema}
         onSubmit={(values, actions, errors) => {
-          loginUser(values, "/init");
+            setIsLoading(true)
+            localStorage.clear()
+            loginUser(values, "/init");
+            setTimeout(() => {
+                err ? setIsLoading(false) : setIsLoading(true);
+                err ? setIsError(true) : setIsError(false);
+            }, 1000)
         }}
       >
         {({ values, validateForm }) => (
@@ -54,24 +62,30 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
                   />
                 </div>
               </div>
-              <Button
-                style={{ marginLeft: "10px" }}
-                kind="primary"
-                type="submit"
-              >
-                Enviar
-              </Button>
-              <Link to="/register">
-                <Button
-                  style={{ marginLeft: "10px" }}
-                  kind="primary"
-                  type="submit"
-                >
-                  Crear cuenta
-                </Button>
-              </Link>
+              {!isLoading ? (
+                <>
+                  <Button
+                    style={{ marginLeft: "10px" }}
+                    kind="primary"
+                    type="submit"
+                  >
+                    Enviar
+                  </Button>
+                  <Link to="/register">
+                    <Button
+                      style={{ marginLeft: "10px" }}
+                      kind="primary"
+                      type="submit"
+                    >
+                      Crear cuenta
+                    </Button>
+                  </Link>
+                </>
+              ) : (
+                <Loading />
+              )}
             </Form>
-            {err ? (
+            {isError ? (
               <p style={{ color: "red", marginTop: 10 }}>
                 Usuario o contraseña incorrectos
               </p>

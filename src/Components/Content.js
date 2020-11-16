@@ -17,10 +17,10 @@ const StoryContent = ({title}) => {
           <div className="bx--col">
             <TitleArticle style={{ margin: '0 0 30px', color: 'white' }}>{title}</TitleArticle>
             <Description style={{color: '#fff'}}>
-              Bienvenido al sistema de solictudes para poder obtener sistemas informaticos de IBM. Con este sistema será mas facil poder realizar la solictud para poder ser una empresa verificada por IBM y poder gozar de todos los beneficios.
+              Bienvenido al sistema de solicitudes para poder obtener sistemas informáticos de IBM. Con este sistema será más fácil poder realizar la solicitud para poder ser una empresa verificada por IBM y poder gozar de todos los beneficios.
               <br />
               <br />
-              Como usurio podras generar un formulario el cual será revisado por nuestro personal el cual dara el visto bueno y todo proceso podras verlo en este sistema mediante la opcion formulario creados en el cual podras denotar las observaciones que el validador escribió al igual que seras notificado por correo electronico al email registrado en el formulario
+              Como usuario podrás generar un formulario el cual será revisado por nuestro personal el cual dará el visto bueno y todo proceso podrás verlo en este sistema mediante la opción formulario creados en el cual podrás denotar las observaciones que el validador escribió al igual que serás notificado por correo electrónico al email registrado en el formulario
               <br />
               <br />
               <Link to='/form'>

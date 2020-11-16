@@ -21,10 +21,7 @@ const HeroInfo = () => {
         <Row>
           <Column >
             <Description>
-              IBM Application es la herramienta con la cual se estara generando la alta de solicitudes y validación de las mismas de una manera
-              facil y eficiente mejorando el proceso que se realizabá de manera
-              manual, esta aplicación cuenta con ayuda de Watson AI para poder
-              realizar la validación de las solicitudes que son creadas por personas dueñas de empresas para poder vender productos de IBM 
+            Broker IBM Aplicación es la herramienta con la cual se estará generando el alta de solicitudes y validación de estas de una manera fácil y eficiente mejorando el proceso que se realizaba de manera manual, esta aplicación cuenta con ayuda de Watson AI para poder realizar la validación de las solicitudes que son creadas por personas dueñas de empresas para poder vender productos de IBM
             </Description>
           </Column>
           <Column style={{ textAlign: 'center' }}>
