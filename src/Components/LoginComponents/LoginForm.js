@@ -26,13 +26,12 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
         initialValues={initialData}
         validationSchema={LoginSchema}
         onSubmit={(values, actions, errors) => {
-            setIsLoading(true)
-            localStorage.clear()
-            loginUser(values, "/init");
-            setTimeout(() => {
-                err ? setIsLoading(false) : setIsLoading(true);
-                err ? setIsError(true) : setIsError(false);
-            }, 1000)
+          setIsLoading(true);
+          localStorage.clear();
+          loginUser(values, "/init");
+
+          err ? setIsLoading(false) : setIsLoading(true);
+          err ? setIsError(true) : setIsError(false);
         }}
       >
         {({ values, validateForm }) => (
