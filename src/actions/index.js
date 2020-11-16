@@ -74,7 +74,7 @@ export const loginUser = ({ email, password }, redirectUrl) => {
             }
         }
         catch (err) {
-            dispatch(setError(err.message))
+            dispatch(setError(err))
         }
     }
 }

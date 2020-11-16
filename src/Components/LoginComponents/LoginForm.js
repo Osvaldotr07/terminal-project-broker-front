@@ -20,17 +20,22 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
+  useEffect(() => {
+    localStorage.clear();
+    setIsLoading(false);
+    setIsError(false)
+    console.log(isLoading)
+  }, [isError]);
+
   return (
     <div className="form-container">
       <Formik
         initialValues={initialData}
         validationSchema={LoginSchema}
-        onSubmit={(values, actions, errors) => {
-          setIsLoading(true);
+        onSubmit={async (values, actions, errors) => {
           localStorage.clear();
-          loginUser(values, "/init");
-
-          err ? setIsLoading(false) : setIsLoading(true);
+          setIsLoading(true);
+          await Promise.resolve(loginUser(values, "/init"));
           err ? setIsError(true) : setIsError(false);
         }}
       >
@@ -84,7 +89,7 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
                 <Loading />
               )}
             </Form>
-            {isError ? (
+            {err ? (
               <p style={{ color: "red", marginTop: 10 }}>
                 Usuario o contraseña incorrectos
               </p>
