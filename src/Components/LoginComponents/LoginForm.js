@@ -21,10 +21,9 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    localStorage.clear();
+    window.localStorage.clear()
     setIsLoading(false);
-    setIsError(false)
-    console.log(isLoading)
+    setIsError(false);
   }, [isError]);
 
   return (
@@ -33,8 +32,8 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
         initialValues={initialData}
         validationSchema={LoginSchema}
         onSubmit={async (values, actions, errors) => {
-          localStorage.clear();
           setIsLoading(true);
+          localStorage.clear();
           await Promise.resolve(loginUser(values, "/init"));
           err ? setIsError(true) : setIsError(false);
         }}
@@ -66,7 +65,7 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
                   />
                 </div>
               </div>
-              {!isLoading ? (
+              
                 <>
                   <Button
                     style={{ marginLeft: "10px" }}
@@ -85,9 +84,6 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
                     </Button>
                   </Link>
                 </>
-              ) : (
-                <Loading />
-              )}
             </Form>
             {err ? (
               <p style={{ color: "red", marginTop: 10 }}>
