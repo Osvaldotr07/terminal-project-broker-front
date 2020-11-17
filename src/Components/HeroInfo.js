@@ -21,11 +21,11 @@ const HeroInfo = () => {
         <Row>
           <Column >
             <Description>
-            Broker IBM Aplicación es la herramienta con la cual se estará generando el alta de solicitudes y validación de estas de una manera fácil y eficiente mejorando el proceso que se realizaba de manera manual, esta aplicación cuenta con ayuda de Watson AI para poder realizar la validación de las solicitudes que son creadas por personas dueñas de empresas para poder vender productos de IBM
+            Aplicación broker de IBM es la herramienta con la cual se estará generando el alta de solicitudes y validación de estas de una manera fácil y eficiente mejorando el proceso que se realizaba de manera manual, esta aplicación cuenta con ayuda de Watson AI para poder realizar la validación de las solicitudes que son creadas por personas dueñas de empresas para poder vender productos de IBM
             </Description>
           </Column>
           <Column style={{ textAlign: 'center' }}>
-            <TitleArticle>¿Que es IBM Broker Application?</TitleArticle>
+            <TitleArticle>¿Que es la aplicación broker de IBM?</TitleArticle>
           </Column>
         </Row>
       </Grid>

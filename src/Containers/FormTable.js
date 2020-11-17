@@ -32,7 +32,7 @@ const headers = [{
     "key": "status"
 },
 {
-    "header": 'creado por',
+    "header": 'Creado por',
     "key": 'userEmail'
 },
 {

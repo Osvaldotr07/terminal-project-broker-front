@@ -76,7 +76,7 @@ const UserInfoForm = (
                                 <div className="form-field">
                                     <Field
                                         style={{ width: '300px' }}
-                                        labelText="Numero de telefono"
+                                        labelText="Numero de teléfono"
                                         name="phoneNumberUser"
                                         component={TextInputForm}
                                     />
@@ -102,7 +102,7 @@ const UserInfoForm = (
                                 <div className="form-field">
                                     <Field
                                         style={{ width: '300px' }}
-                                        labelText="Correo electronico"
+                                        labelText="Correo electrónico"
                                         name="userEmail"
                                         value={email} 
                                         component={TextInputForm}
@@ -125,7 +125,7 @@ const UserInfoForm = (
                             </div>
                         </Column>
                     </Row>
-                    <TitleArticle>Información del presidente de la compañia</TitleArticle>
+                    <TitleArticle>Información del presidente de la compañía</TitleArticle>
                     <Row>
                         <Column>
                             <div className="form-fieldset">
@@ -158,7 +158,7 @@ const UserInfoForm = (
                                 <div className="form-field">
                                     <Field
                                         style={{ width: '300px' }}
-                                        labelText="Numero telefonico"
+                                        labelText="Numero de teléfono"
                                         name="phoneOwner"
                                         component={TextInputForm}
                                     />
@@ -170,7 +170,7 @@ const UserInfoForm = (
                                 <div className="form-field">
                                     <Field
                                         style={{ width: '300px' }}
-                                        labelText="Correo electronico"
+                                        labelText="Correo electrónico"
                                         name="ownerEmail"
                                         component={TextInputForm}
                                     />

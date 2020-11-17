@@ -30,7 +30,7 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                         handleSubmit={handleSubmit}
                                         style={{ width: '300px' }}
                                         autoFocus
-                                        labelText="Nombre de la compañia"
+                                        labelText="Nombre de la compañía"
                                         name="companyName"
                                         component={TextInputForm}
                                     />
@@ -43,7 +43,7 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                     <Field
                                         style={{ width: '300px' }}
                                         autoFocus
-                                        labelText="RFC de la compañia"
+                                        labelText="RFC de la compañía"
                                         name="rfcCompany"
                                         component={TextInputForm}
                                     />
@@ -58,7 +58,7 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                     <Field
                                         style={{ width: '300px' }}
                                         autoFocus
-                                        labelText="URL de la compañia"
+                                        labelText="URL de la compañía"
                                         name="companyUrl"
                                         component={TextInputForm}
                                     />
@@ -71,7 +71,7 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                     <Field
                                         style={{ width: '300px' }}
                                         autoFocus
-                                        labelText="Numero telefonico"
+                                        labelText="Numero de teléfono"
                                         name="companyPhoneNumber"
                                         component={TextInputForm}
                                     />
@@ -84,7 +84,7 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                     <Field
                                         style={{ width: '300px' }}
                                         autoFocus
-                                        labelText="Facebook de la compañia"
+                                        labelText="Facebook de la compañía"
                                         name="facebookProfile"
                                         component={TextInputForm}
                                     />
@@ -97,7 +97,7 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                     <Field
                                         style={{ width: '300px' }}
                                         autoFocus
-                                        labelText="Twitter de la compañia"
+                                        labelText="Twitter de la compañía"
                                         name="twitterProfile"
                                         component={TextInputForm}
                                     />

@@ -7,7 +7,7 @@ import SideBar from '../Components/SideBar'
 const LandingPage = () => {
   return (
     <>
-      <StoryContent title="Bienvenido al Broker web application" />
+      <StoryContent title="Bienvenido a la aplicación de broker de IBM" />
       <HeroInfo />
     </>
   );

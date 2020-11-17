@@ -14,7 +14,7 @@ export const Header = ({isLogged}) => (
       <div className="bx--row">
         <div className="bx--col bx--col-sm-16">
           <div className="header__wrapper_info" style={{marginTop: '70px'}}>
-            <Title>Broker IBM Application</Title>
+            <Title>Aplicación Broker de IBM</Title>
             <div className="header__wrapper_description" >
               <h3>
                 Una forma mas rapida de poder hacer el proceso, <br />
@@ -52,7 +52,7 @@ export const Article = ({isLogged}) => (
         </div>
         <div className="bx--col">
           <Wrapper>
-            <TitleArticle>¿Que es usar la aplicacion de broker?</TitleArticle>
+            <TitleArticle>¿Que es usar la aplicación de broker de IBM?</TitleArticle>
             <Description>IBM cuenta con una infinidad de servicios los cuales puede brindar y prestar a otras empresas, la aplicación de bróker ayuda a poder realizar un proceso de solicitud de manera más fácil y eficiente. Se necesita realizar el llenado de un formulario el cual será enviado a nuestro validadores los cuales se encargarán de revisar la información enviada para poder aceptar que la empresa registrada es óptima para poder revender los productos de hardware de IBM</Description>
           </Wrapper>
         </div>

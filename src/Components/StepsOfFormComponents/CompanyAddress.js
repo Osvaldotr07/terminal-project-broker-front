@@ -72,7 +72,7 @@ const CompanyAddress = (
                                 <div className="form-field">
                                     <Field
                                         style={{ width: '300px' }}
-                                        labelText="Pais"
+                                        labelText="País"
                                         name="countryName"
                                         options={Object.values(countries)}
                                         component={SelectInputForm}
@@ -111,7 +111,7 @@ const CompanyAddress = (
                                 <div className="form-field">
                                     <Field
                                         style={{ width: '300px' }}
-                                        labelText="Codigo postal"
+                                        labelText="Código postal"
                                         name="zipName"
                                         component={TextInputForm}
                                     />

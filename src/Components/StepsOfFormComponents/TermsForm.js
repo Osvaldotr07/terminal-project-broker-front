@@ -15,7 +15,7 @@ const TermsForm = ({ step, onBack, formData, validationSchema, handleSubmit, nex
                 nextStep={nextStep}
                 handleSubmit={handleSubmit}>
                 <Grid >
-                    <TitleArticle>Terminos y condiciones</TitleArticle>
+                    <TitleArticle>Términos y condiciones</TitleArticle>
                     <Row>
                         <Column >
                             <TitleArticle>Visión General</TitleArticle>
