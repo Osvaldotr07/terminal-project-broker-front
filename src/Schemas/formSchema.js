@@ -2,16 +2,20 @@ import * as yup from 'yup'
 
 const regexp = {
     numberPhoneRegex: /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-    emailRegex: /www.([a-z A-Z]{1,60})/
+    urlRegex: /www.([a-z A-Z]{1,60})/,
+    strigRgex: /^[A-Za-z _]*[A-Za-z][A-Za-z _]*$/
+
 }
 
 export const UserInfoSchema = () => yup.object({
     name: yup
     .string()
     .required('Nombre es requerido')
+    .matches(regexp.strigRgex, "Ingrese un nombre valido")
     .max(35, 'El nombre no puede tener mas 35 caracteres'),
     lastName: yup
     .string()
+    .matches(regexp.strigRgex, "Ingrese un apellido valido")
     .required('El apellido es requerido')
     .max(35, 'El apellido no debe de tener más 35 caracteres'),
     phoneNumberUser: yup
@@ -23,6 +27,7 @@ export const UserInfoSchema = () => yup.object({
     jobTitle: yup
     .string()
     .required('El rol del trabajo es requerido')
+    .matches(regexp.strigRgex, "Ingrese un valor valido")
     .max(60, 'Solo se permiten 60 caracteres'),
     phoneOwner: yup
     .string()
@@ -37,28 +42,31 @@ export const UserInfoSchema = () => yup.object({
     .email('El correo electrónico no es válido ejemplo(example@exa.com)'),
     ownerName: yup
     .string()
-    .required('El correo es requerido')
+    .required('El nombre es requerido')
+    .matches(regexp.strigRgex, "Ingrese un nombre valido")
     .max(60, 'No se pueden ingresar más de 60 caracteres'),
     ownerLastName: yup
     .string()
     .required('El apellido es requerido')
+    .matches(regexp.strigRgex, "Ingrese un apellido valido")
     .max(60, 'No se pueden ingresar más de 60 caracteres')
-    .matches()
 });
 
 export const CompanyName = () => yup.object({
     companyName: yup
     .string()
     .required('El nombre de la compañía es requerido')
+    .matches(regexp.strigRgex, "Ingrese un valor valido")
     .max(60, 'Solo se permiten 60 características'),
     rfcCompany: yup
     .string()
+    .matches(regexp.strigRgex, "Ingrese un valor valido")
     .required('El RFC es requerido')
     .max(13,'Solo se permiten 13 caracteres'),
     companyUrl: yup
     .string()
     .max(60, 'No se permiten mas de 60 caracteres')
-    .matches(regexp.emailRegex, 'No es una URL valida ejemplo: www.url.com'),
+    .matches(regexp.urlRegex, 'No es una URL valida ejemplo: www.url.com'),
     companyPhoneNumber: yup
     .string()
     .required('El numero telefonico es requerido')
@@ -66,9 +74,11 @@ export const CompanyName = () => yup.object({
     .nullable()
     .matches(regexp.numberPhoneRegex, 'No es un numero telefonico valido'),
     facebookProfile: yup
-    .string(),
+    .string()
+    .matches(regexp.strigRgex, "Ingrese un valor valido"),
     twitterProfile: yup
     .string()
+    .matches(regexp.strigRgex, "Ingrese un valor valido"),
 })
 
 export const CompanyAddressSchema = () => yup.object({
@@ -104,7 +114,7 @@ export const LoginSchema = () => yup.object({
 })
 
 export const ResgisterSchema = () => yup.object({
-    name: yup.string().min(8, "El nombre de usuario debe de tener más de 8 dígitos").required("El nombre de usuario es requerido"),
+    name: yup.string().min(8, "El nombre de usuario debe de tener más de 8 dígitos").required("El nombre de usuario es requerido").matches(regexp.strigRgex, "Ingrese un nombre valido"),
     email: yup.string().email().required('El correo electrónico es requerido'),
     password: yup.string().min(8, 'La contraseña debe de ser mayor a 8 caracteres').required("La contraseña es requerida")
 })

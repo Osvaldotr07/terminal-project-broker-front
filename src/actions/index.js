@@ -185,3 +185,25 @@ export const updateOneForm = (payload, redirectUrl, token) => {
         }
     }
 }
+
+export const sendUserEmail = (email, token) => {
+    return async(dispatch) => {
+        console.log(email)
+        try{
+            let response = await axios('https://damp-tor-32976.herokuapp.com//email/send', {
+                method:  'GET',
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    Authorization: `Bearer ${token}`
+                },
+            })
+            console.log(response )
+            if(response.statusText) {
+                console.log('Email enviado')
+            }
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+}

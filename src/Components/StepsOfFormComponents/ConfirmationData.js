@@ -8,7 +8,7 @@ import {
 
 import { Formik, Field, Form } from 'formik'
 import { connect } from 'react-redux'
-import { createOneForm, updateOneForm } from '../../actions/index'
+import { createOneForm, updateOneForm, sendUserEmail } from '../../actions/index'
 
 //Components
 import UserInfoForm from './UserInfoForm'
@@ -24,7 +24,8 @@ const ConfirmationData = (
         createOneForm,
         updateOneForm,
         tk,
-        email
+        email,
+        sendUserEmail
     }
 ) => {
     const [isLoading, setIsLoading] = useState(false)
@@ -43,10 +44,12 @@ const ConfirmationData = (
            <Formik
             initialValues={formData}
             onSubmit={(values) => {
+                console.log(email)
                 setIsLoading(true)
                 values.userEmail = email
                 values.applicationDate = new Date()
                 values.status = 'Enviado'
+                sendUserEmail(email, tk)
                 window.location.pathname === '/edit' ? updateOneForm(values, '/myforms', tk) : createOneForm(values, '/myforms', tk)
             }}
            >
@@ -77,7 +80,8 @@ const ConfirmationData = (
 
 const mapDispatchToProps = {
     createOneForm,
-    updateOneForm
+    updateOneForm,
+    sendUserEmail
 }
 
 const mapStateToProps = (state) => {
