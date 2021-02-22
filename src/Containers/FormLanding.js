@@ -18,7 +18,7 @@ import formFiledDefatult from '../utils/dataForm'
 import { UserInfoSchema, CompanyName, CompanyAddressSchema } from '../Schemas/formSchema'
 
 const FormLanding = ({ item }) => {
-    const [step, setStep] = useState(0)
+    const [step, setStep] = useState(2)
     const [formData, setFormData] = useState(window.location.pathname === '/edit' ? item[0] : formFiledDefatult)
 
     const nextStep = () => setStep((prev) => prev + 1)

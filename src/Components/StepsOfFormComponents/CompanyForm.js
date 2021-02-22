@@ -46,12 +46,12 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                         labelText="RFC de la compañía"
                                         name="rfcCompany"
                                         component={TextInputForm}
-                                    />
+                                        />
                                 </div>
                             </div>
                         </Column>
-                    
-                    
+                    </Row>
+                    <Row>
                         <Column>
                             <div className="form-fieldset">
                                 <div className="form-field">
@@ -78,6 +78,8 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                 </div>
                             </div>
                         </Column>
+                    </Row>
+                    <Row>
                         <Column>
                             <div className="form-fieldset">
                                 <div className="form-field">
@@ -91,6 +93,7 @@ const CompanyForm = ({ step, onBack, formData, validationSchema, handleSubmit, n
                                 </div>
                             </div>
                         </Column>
+
                         <Column>
                             <div className="form-fieldset">
                                 <div className="form-field">
