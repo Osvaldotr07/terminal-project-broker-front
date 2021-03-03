@@ -36,6 +36,11 @@ const SideBar = ({ isLogged, onLogout }) => {
                             <Catalog16 /> Listar formas
                         </MenuItem>
                     </Link>
+                    <Link to="/tracker" style={{ textDecoration: 'none', color: 'white' }}>
+                        <MenuItem>
+                            <Catalog16 /> Checar estatus
+                        </MenuItem>
+                    </Link>
                 </MenuContainer>
             </WrapperMenu>
             <HeaderGlobalBar style={{ background: 'black' }}>

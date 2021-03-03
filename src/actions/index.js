@@ -134,12 +134,19 @@ export const getForms = (token, email) => {
 
             if(response.statusText){
                 const { data } = response
-                dispatch(getDataTable(data))
+                // dispatch(getDataTable(data))
+                return data
             }
         }
         catch(err){
-            console.log(err)
-            dispatch(onLogout())
+            let status = checkStaus(err)
+            if(status === 401) {
+                dispatch(onLogout())
+            } 
+            else {
+                console.log(err)
+            }
+            // 
         }
     }
 }
@@ -188,7 +195,6 @@ export const updateOneForm = (payload, redirectUrl, token) => {
 
 export const sendUserEmail = (email, token) => {
     return async(dispatch) => {
-        console.log(email)
         try{
             let response = await axios('https://damp-tor-32976.herokuapp.com//email/send', {
                 method:  'GET',
@@ -197,7 +203,7 @@ export const sendUserEmail = (email, token) => {
                     Authorization: `Bearer ${token}`
                 },
             })
-            console.log(response )
+            console.log(response)
             if(response.statusText) {
                 console.log('Email enviado')
             }
@@ -207,3 +213,10 @@ export const sendUserEmail = (email, token) => {
         }
     }
 }
+
+
+const checkStaus =  (err) => {
+    let errArray = err.message.split(' ')[err.message.split(' ').length - 1]
+    return parseInt(errArray)
+}
+   

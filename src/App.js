@@ -5,8 +5,11 @@ import Home from './Containers/Home'
 import LandingPage from './Containers/LandingPage'
 import Footer from './Components/Footer'
 import FormLanding from './Containers/FormLanding'
-import FormTable from './Containers/FormTable'
+import FormTableWrapper from './Containers/FormTableWrapper'
 import { Navbar } from './Components/Navbar'
+import StatusTracker from './Containers/StatusTracker'
+
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Error404 from './Containers/Error404'
 import LoginPage from './Containers/LoginPage'
@@ -30,8 +33,9 @@ const App = ({isLogged, email}) => {
           <Route path="/" component={Home} exact />
           <PrivateRoute path="/init" exact component={LandingPage} isLogged={isLogged}/>
           <PrivateRoute path='/form' exact component={FormLanding} isLogged={isLogged}/>
-          <PrivateRoute path="/myforms" exact component={FormTable} isLogged={isLogged}/>
+          <PrivateRoute path="/myforms" exact component={FormTableWrapper} isLogged={isLogged}/>
           <PrivateRoute path="/edit" exact component={FormLanding} isLogged={isLogged}/>
+          <PrivateRoute path="/tracker" exact component={StatusTracker} isLogged={isLogged}/>
           <Route path="/login" exact component={isLogged ? LandingPage : LoginPage} />
           <Route path="/register" exact component={isLogged ? LandingPage : RegisterPage} />
           <Route component={Error404}/>

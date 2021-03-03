@@ -100,7 +100,12 @@ const FormLanding = ({ item }) => {
                 validationSchemaCompany={validateCompany}
                 validationSchemaAddress={validateAddresss}
                 handleSubmit={handleSubmit}
+                step={step}
+                onBack={backStep}
                 />
+
+            default: 
+                    return null
         }
     })
 

@@ -25,7 +25,8 @@ const ConfirmationData = (
         updateOneForm,
         tk,
         email,
-        sendUserEmail
+        sendUserEmail,
+        step
     }
 ) => {
     const [isLoading, setIsLoading] = useState(false)
@@ -44,7 +45,6 @@ const ConfirmationData = (
            <Formik
             initialValues={formData}
             onSubmit={(values) => {
-                console.log(email)
                 setIsLoading(true)
                 values.userEmail = email
                 values.applicationDate = new Date()
