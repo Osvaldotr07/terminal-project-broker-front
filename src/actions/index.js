@@ -52,10 +52,10 @@ export const loginUser = ({ email, password }, redirectUrl) => {
     return async (dispatch) => {
         try {
             let response = await axios({
-                url: 'https://damp-tor-32976.herokuapp.com/api/auth/sign-in',
+                url: 'api/auth/sign-in',
                 method: 'post',
                 headers: {
-                    "Access-Control-Allow-Origin": "*"
+                    "Content-type": "application/json"
                 },
                 auth: {
                     username: email,
@@ -101,7 +101,7 @@ export const createOneForm = (payload, redirectUrl, token) => {
             let response = await axios('https://damp-tor-32976.herokuapp.com/api/forms/createForm', {
                 method: 'post',
                 headers: {  
-                    "Access-Control-Allow-Origin": "*",
+                    "Content-type": "application/json",
                     Authorization: `Bearer ${token}`
                 },
                 data: payload,
@@ -126,7 +126,7 @@ export const getForms = (token, email) => {
             let response = await axios('https://damp-tor-32976.herokuapp.com/api/forms', {
                 method: 'post',
                 headers: {
-                    "Access-Control-Allow-Origin": "*",
+                    "Content-type": "application/json",
                     Authorization: `Bearer ${token}`
                 },
                 data: {email}
@@ -200,6 +200,7 @@ export const sendUserEmail = (email, token) => {
                 method:  'GET',
                 headers: {
                     "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Credentials":true,
                     Authorization: `Bearer ${token}`
                 },
             })
