@@ -134,7 +134,7 @@ export const getForms = (token, email) => {
 
             if(response.statusText){
                 const { data } = response
-                // dispatch(getDataTable(data))
+                dispatch(getDataTable(data))
                 return data
             }
         }
@@ -157,10 +157,14 @@ export const deleteForm = (token, id) => {
             let response = await axios(`https://damp-tor-32976.herokuapp.com/api/forms/${id}`, {
                 method: 'delete',
                 headers: {
-                    "Access-Control-Allow-Origin": "*",
+                    "Content-type": "application/json",
                     Authorization: `Bearer ${token}`
                 },
             })
+
+            if(response.statusText){
+                window.location = '/myForms'
+            }
         }
         catch(err){
             console.log(err)
@@ -175,7 +179,7 @@ export const updateOneForm = (payload, redirectUrl, token) => {
             let response = await axios('https://damp-tor-32976.herokuapp.com/api/forms/updateForm', {
                 method: 'put',
                 headers: {
-                    "Access-Control-Allow-Origin": "*",
+                    "Content-type": "application/json",
                     Authorization: `Bearer ${token}`
                 },
                 data: payload
@@ -199,8 +203,7 @@ export const sendUserEmail = (email, token) => {
             let response = await axios('https://damp-tor-32976.herokuapp.com//email/send', {
                 method:  'GET',
                 headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Access-Control-Allow-Credentials":true,
+                    "Content-type": "application/json",
                     Authorization: `Bearer ${token}`
                 },
             })

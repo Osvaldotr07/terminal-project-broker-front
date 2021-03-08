@@ -3,7 +3,7 @@ import * as yup from 'yup'
 const regexp = {
     numberPhoneRegex: /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
     urlRegex: /www.([a-z A-Z]{1,60})/,
-    strigRgex: /^[A-Za-z _]*[A-Za-z][A-Za-z _]*$/
+    strigRgex: /^[A-Za-z _]*[A-Za-z][A-Za-z _ 1-9]*$/
 
 }
 
@@ -85,6 +85,7 @@ export const CompanyAddressSchema = () => yup.object({
     addressCompany: yup
     .string()
     .required('La dirección es requerida')
+    .matches(regexp.strigRgex, "Ingrese un dirección valida")
     .max(60, 'No se permiten más de 60 caracteres'),
     addressNumber: yup
     .number()
@@ -93,14 +94,17 @@ export const CompanyAddressSchema = () => yup.object({
     countryName: yup
     .string()
     .required('El país es requerido')
+    .matches(regexp.strigRgex, "Ingrese un País valido")
     .max(30, 'Solo se permiten ingresar 30 características'),
     cityName: yup
     .string()
     .required('La ciudad es requerida')
+    .matches(regexp.strigRgex, "Ingrese un Ciudad valida")
     .max(60, 'Solo se pueden ingresar 60 caracteres'),
     stateName: yup
     .string()
     .required('El estado es requerido')
+    .matches(regexp.strigRgex, "Ingrese un estado valido")
     .max(60, 'Solo se pueden ingresar 60 caracteres'),
     zipName: yup
     .number()

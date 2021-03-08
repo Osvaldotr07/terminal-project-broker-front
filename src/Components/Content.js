@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom'
 
 const StoryContent = ({title}) => {
   const content = (
-    <div style={{backgroundColor: '#161616', color: 'white', padding: 20}}>
+    <div style={{backgroundColor: '#161616', color: 'white', padding: 20, marginBottom: 150}}>
       <div className="bx--grid">
         <div className="bx--row">
-          <div className="bx--col">
+          <div className="bx--col bx--col-sm-4">
             <img src={LogoHero} alt="" width="100%"></img>
           </div>
           <div className="bx--col">

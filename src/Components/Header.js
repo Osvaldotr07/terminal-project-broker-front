@@ -1,18 +1,18 @@
 import React from 'react'
 import { ImageWrapper, Image, Title, TitleArticle, Wrapper, Description } from '../assets/styles/General-styles'
-import { Button } from 'carbon-components-react'
-import { Login20 } from '@carbon/icons-react';
+// import { Button } from 'carbon-components-react'
+// import { Login20 } from '@carbon/icons-react';
 
 import Logo from '../assets/images/pexel-light.jpg'
 import '../assets/styles/Header.css'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 
 export const Header = ({isLogged}) => (
   <>
     <div className="bx--grid grid" style={{margin:0}}>
       <div className="bx--row">
-        <div className="bx--col bx--col-sm-16">
+        <div className="bx--col bx--col-sm-4">
           <div className="header__wrapper_info" style={{marginTop: '70px'}}>
             <Title>Aplicación Broker de IBM</Title>
             <div className="header__wrapper_description" >
@@ -21,19 +21,19 @@ export const Header = ({isLogged}) => (
                 para poder vender productos tecnologícos de IBM
               </h3>
             </div>
-              {
-                !isLogged ? 
+              {/* {
+                isLogged ? 
                   <Link to="/register">
                     <Button>
                       Registrate <Login20 style={{ fontSize: 16 }} />
                     </Button>
                   </Link>
                   :
-                  <></>
-              }
+                  null
+              } */}
           </div>
         </div>
-        <div className="bx--col bx--col-sm-16" style={{ padding: 0 }}>
+        <div className="bx--col" style={{ padding: 0 }}>
           <ImageWrapper>
             <Image src={Logo} style={{height: '80vh'}}/>
           </ImageWrapper>
@@ -47,7 +47,7 @@ export const Article = ({isLogged}) => (
   <>
     <div className="bx--grid">
       <div className="bx--row">
-        <div className="bx--col" style={{display: 'flex', justifyContent:'flex-start', alignItems:'center'}}>
+        <div className="bx--col" style={{display: 'flex', justifyContent:'flex-start', alignItems:'center', marginTop: 50}}>
           <Description>Visión general</Description>
         </div>
         <div className="bx--col">

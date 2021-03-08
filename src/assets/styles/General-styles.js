@@ -16,15 +16,23 @@ export const Image = styled.img`
   margin: 0;
 `
 
+export const ImageLogin = styled.img`
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+`
+
 export const Title = styled.h1`
   color: #fff;
   font-size: 3em;
 `
 export const TitleArticle = styled.h1`
-  color: #000;
+  color: #191919;
   font-size: 2.5em;
   margin-bottom: 15px;
   font-weight: bold;
+  width: 100%
 `
 
 export const Wrapper = styled.div`

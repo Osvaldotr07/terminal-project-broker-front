@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { getForms, deleteForm, dataToUpdate } from "../actions/index";
 
 import { connect } from 'react-redux'
-
+import headersInTablet from '../utils/headers'
 import FormTable from './FormTable'
 
 const FormTableWrapper = ({getForms, tk, email}) => {
@@ -32,12 +32,14 @@ const FormTableWrapper = ({getForms, tk, email}) => {
                 title="Solicitudes registradas"
                 isDraft={false}
                 rows={rows.filter(item => item.status === 'Enviado')}
+                headers={headersInTablet.cabecerasEnviadas}
             />
             <br/>
             <FormTable 
                 title="Solicitudes preguardadas"
                 isDraft={true}
                 rows={rows.filter(item => item.status === 'Preguardado')}
+                headers={headersInTablet.cabecerasPreguardadas}
             />
         </div>
     )

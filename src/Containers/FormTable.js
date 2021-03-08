@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { getForms, deleteForm, dataToUpdate } from "../actions/index";
+
 import {
   DataTable,
   TableContainer,
@@ -16,6 +17,7 @@ import {
   TableToolbarContent,
   Button,
   TableToolbarSearch,
+  Loading,
 } from "carbon-components-react";
 import { Link } from "react-router-dom";
 
@@ -23,25 +25,6 @@ const actionButton = {
   border: "none",
   background: "none",
 };
-
-const headers = [
-  {
-    header: "Nombre del propietario",
-    key: "name",
-  },
-  {
-    header: "Estatus",
-    key: "status",
-  },
-  {
-    header: "Creado por",
-    key: "userEmail",
-  },
-  {
-    header: "Nombre de la Compañia",
-    key: "companyName",
-  },
-];
 
 const FormTable = ({
   title,
@@ -52,92 +35,100 @@ const FormTable = ({
   deleteForm,
   dataToUpdate,
   isDraft,
-  rows
+  rows,
+  headers,
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <div className="form-container">
-      <DataTable
-        rows={rows}
-        headers={headers}
-        render={({
-          rows,
-          headers,
-          getHeaderProps,
-          getRowProps,
-          onInputChange,
-        }) => (
-          <TableContainer title={title}>
-            <TableToolbar>
-              <TableToolbarContent>
-                <TableToolbarSearch />
-                {!isDraft ? (
-                  <Link to="/form" style={{ textDecoration: "none" }}>
+      {
+        !isLoading ? 
+        <DataTable
+          rows={rows}
+          headers={headers}
+          render={({
+            rows,
+            headers,
+            getHeaderProps,
+            getRowProps,
+            onInputChange,
+          }) => (
+            <TableContainer title={title}>
+              <TableToolbar>
+                <TableToolbarContent>
+                  <TableToolbarSearch />
+                  {!isDraft ? (
+                    <Link to="/form" style={{ textDecoration: "none" }}>
+                      <Button
+                        // onClick={props.add}
+                        size="medium"
+                        kind="primary"
+                      >
+                        Crear nueva forma
+                      </Button>
+                    </Link>
+                  ) : (
                     <Button
                       // onClick={props.add}
                       size="medium"
                       kind="primary"
+                      style={{ visibility: "hidden" }}
                     >
                       Crear nueva forma
                     </Button>
-                  </Link>
-                ) : <Button
-                // onClick={props.add}
-                size="medium"
-                kind="primary"
-                style={{visibility: 'hidden'}}
-              >
-                Crear nueva forma
-              </Button>}
-              </TableToolbarContent>
-            </TableToolbar>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  {headers.map((header) => (
-                    <TableHeader {...getHeaderProps({ header })}>
-                      {header.header}
-                    </TableHeader>
-                  ))}
-                  <TableHeader>Acciones</TableHeader>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow key={row.id} {...getRowProps({ row })}>
-                    {row.cells.map((cell) => (
-                      <TableCell key={cell.id}>{cell.value}</TableCell>
+                  )}
+                </TableToolbarContent>
+              </TableToolbar>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    {headers.map((header) => (
+                      <TableHeader {...getHeaderProps({ header })}>
+                        {header.header}
+                      </TableHeader>
                     ))}
-                    <TableCell className="bx--table-column-menu">
-                      <OverflowMenu flipped style={actionButton}>
-                        <Link to="/edit">
+                    <TableHeader>Acciones</TableHeader>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => (
+                    <TableRow key={row.id} {...getRowProps({ row })}>
+                      {row.cells.map((cell) => (
+                        <TableCell key={cell.id}>{cell.value}</TableCell>
+                      ))}
+                      <TableCell className="bx--table-column-menu">
+                        <OverflowMenu flipped style={actionButton}>
+                          <Link to="/edit">
+                            <OverflowMenuItem
+                              itemText="Editar"
+                              onClick={() => {
+                                dataToUpdate(row.id);
+                              }}
+                            >
+                              Editar
+                            </OverflowMenuItem>
+                          </Link>
+
                           <OverflowMenuItem
-                            itemText="Editar"
+                            itemText="Eliminar"
                             onClick={() => {
-                              dataToUpdate(row.id);
+                              setIsLoading(true)
+                              deleteForm(tk, row.id);
                             }}
                           >
-                            Editar
+                            Eliminar
                           </OverflowMenuItem>
-                        </Link>
-
-                        <OverflowMenuItem
-                          itemText="Eliminar"
-                          onClick={() => {
-                            deleteForm(tk, row.id);
-                            getForms(tk, email);
-                          }}
-                        >
-                          Eliminar
-                        </OverflowMenuItem>
-                      </OverflowMenu>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        )}
-      />
+                        </OverflowMenu>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        />
+        : <Loading />
+      }
     </div>
   );
 };

@@ -20,8 +20,9 @@
 }
 
 .header__wrapper_description {
-  margin: 80px 0 80px 0;
+  margin: 50px 0 80px 0;
   line-height: 30px;
   font-size: 20px;
   width: 100%;
+  height: inherit;
 }
