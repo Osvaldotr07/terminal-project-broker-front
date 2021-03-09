@@ -22,9 +22,7 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
 
   useEffect(() => {
     window.localStorage.clear()
-    setIsLoading(false);
-    setIsError(false);
-  }, [isError]);
+  }, [isLoading]);
 
   return (
     <div className="form-container">
@@ -32,17 +30,25 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
         initialValues={initialData}
         validationSchema={LoginSchema}
         onSubmit={async (values, actions, errors) => {
-          setIsLoading(true);
-          localStorage.clear();
-          await Promise.resolve(loginUser(values, "/init"));
-          err ? setIsError(true) : setIsError(false);
+          try{
+            localStorage.clear();
+            await Promise.resolve(loginUser(values, "/init"));
+            errors ? setIsError(true) : setIsError(false);
+            setIsLoading(false)
+          }
+          catch(err){
+            setIsLoading(false)
+          }
         }}
       >
         {({ values, validateForm }) => (
           <>
             <TitleArticle>Iniciar sesión</TitleArticle>
             <Form>
-              <div className="form-fieldset">
+              {
+                !isLoading ? 
+                <>
+                <div className="form-fieldset">
                 <div className="form-field">
                   <Field
                     style={{ width: "300px" }}
@@ -65,12 +71,17 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
                   />
                 </div>
               </div>
+              </>
+              : <Loading />
+              }
+              
               
                 <>
                   <Button
                     style={{ marginLeft: "10px" }}
                     kind="primary"
                     type="submit"
+                    onClick={() => setIsLoading(true)}
                   >
                     Enviar
                   </Button>

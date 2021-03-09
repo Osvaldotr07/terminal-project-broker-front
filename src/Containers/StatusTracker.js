@@ -46,16 +46,10 @@ const StatusTracker = ({ forms, getForms, tk, email }) => {
                     sm={16}
                     md={16}
                     lg={16}
-                    // style={{
-                    //     display: "flex",
-                    //     alignItems: "center",
-                    //     justifyContent: "center",
-                    //     flexDirection: "column",
-                    // }}
                     >
                     <TitleArticle>{item.companyName}</TitleArticle>
                     <h1>{item.id}</h1>
-                    <IndicatorStatusTracker step={0} spaceEqually />
+                    <IndicatorStatusTracker step={item.status} spaceEqually />
                     </Column>
                     {/* <Column >
                                         {handleStep(step)}
