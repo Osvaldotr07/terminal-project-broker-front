@@ -114,7 +114,8 @@ export const CompanyAddressSchema = () => yup.object({
 
 export const LoginSchema = () => yup.object({
     email: yup.string().email().required('El correo electrónico es requerido'),
-    password: yup.string().min(8, 'La contraseña debe de ser mayor a 8 caracteres').required("La contraseña es requerida")
+    password: yup.string().min(8, 'La contraseña debe de ser mayor a 8 caracteres').required("La contraseña es requerida"),
+    recapcha: yup.boolean().required('Es necesario')
 })
 
 export const ResgisterSchema = () => yup.object({
