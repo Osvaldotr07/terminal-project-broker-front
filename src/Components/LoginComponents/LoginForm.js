@@ -6,6 +6,7 @@ import { TextInputForm } from "../FormsComponets";
 import { Button, Loading } from "carbon-components-react";
 import { LoginSchema } from "../../Schemas/formSchema";
 import ReCAPTCHA from "react-google-recaptcha";
+import SweetAlert from "sweetalert2-react";
 //redux
 import { connect } from "react-redux";
 
@@ -20,6 +21,8 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [token, setToken] = useState("");
+  const [reCaptRes, setReCaptRes] = useState(false);
+  const [show, setShow] = useState(false);
   const reRef = useRef();
 
   useEffect(() => {
@@ -29,8 +32,20 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
 
   let _reCaptchaRef = React.createRef();
 
-  const handleChange = (value) => {
-    setToken(value);
+  const handleChange = async(value) => {
+    let catResponse = await fetch("api/auth/toke-recaptcha", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        tokenRecapcha: value,
+      }),
+    });
+    let response = await catResponse.json();
+    await Promise.resolve(setReCaptRes(response.data.success));
+    
     // if value is null recaptcha expired
   };
 
@@ -40,18 +55,26 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
 
   return (
     <div className="form-container">
+      <SweetAlert
+        show={show}
+        title="Alert"
+        text="Rellenar Recaptcha"
+        onConfirm={() => setShow(false)}
+      />
       <Formik
         initialValues={initialData}
         validationSchema={LoginSchema}
         onSubmit={async (values, actions, errors) => {
           try {
             localStorage.clear();
-            // const token = await reRef.current.executeAsync();
-            // console.log(token);
-            // await Promise.resolve(loginUser(values, "/init"));
-            // errors ? setIsError(true) : setIsError(false);
-            // setIsLoading(false);
+            console.log(reCaptRes)
+            if(reCaptRes){
+              await Promise.resolve(loginUser(values, "/init"));
+            }
+            errors ? setIsError(true) : setIsError(false);
+            setIsLoading(false);
           } catch (err) {
+            console.log(err)
             setIsLoading(false);
           }
         }}
@@ -89,6 +112,7 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
               ) : (
                 <Loading />
               )}
+
               <ReCAPTCHA
                 sitekey="6LdEj34aAAAAAAKb6ss7rY1aI6ACspotggVpHZvx"
                 onChange={handleChange}
@@ -102,40 +126,7 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
                   kind="primary"
                   type="submit"
                   onClick={async () => {
-                    var myHeaders = new Headers();
-                    myHeaders.append(
-                      "Authorization",
-                      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZjlhNDVkYTY3N2I5OTAwMTcwY2YxZmMiLCJuYW1lIjoiT3N2YWxkbyBUcmVqbyIsImVtYWlsIjoib3N2YWxkb3RyMDdAZ21haWwuY29tIiwiaWF0IjoxNjEyNzYxMTU5LCJleHAiOjE2MTI3NjIwNTl9.LxqgOTUmdV-igFpFZN9NO2KG_2zpX2AefM4h3RxWLCA"
-                    );
-                    myHeaders.append(
-                      "Content-Type",
-                      "application/x-www-form-urlencoded"
-                    );
-
-                    var urlencoded = new URLSearchParams();
-                    urlencoded.append(
-                      "secret",
-                      "6LdEj34aAAAAAOX2KQgBOjMS9vgrAG21wQZhvnf1"
-                    );
-                    urlencoded.append(
-                      "response",
-                      "03AGdBq272cO5Yu8-5p2P2iNWmtx373vp-poZDZ4G8sgZOn1rJnkFNoBP5QTnSkIUbHSVuOiG-yuh-JIJ0o8ZjaokZAy06bygwyZEwBuWHr1ereFYqJrfjEN5MVDBmIrDQjE_mPxBWENIDFk8twoWfX77KkvchY5KBuP8qV8odoy2tAl8r04c_HLNhVykAgaPsXQZqV04Eud-iV7cMM_UNQcxlahdWeLALsfSzxgLQcK0uc6KgE44Co0QW_su21UQIPQzzdTizelUZx9DGFbbbo4BeE9Zbow2i8lF0wrwP9HnMGvWDTZds3ap9hrdmkPhUs1NbOu4d8656Fk5jooEFnciLUklKY4qFGOtBZGD9XHbpHGcGxceX5crG2nE0U0nwq43NcyHDSH3LDEeUPmhRLXSfKuT7565YCPsyB1K59HxYc3FBwimJEzbsgFzVGLXFgy4TmAMd7WcbyDJXIL3_GAIkF9DtSFxZyw"
-                    );
-
-                    var requestOptions = {
-                      method: "POST",
-                      headers: myHeaders,
-                      body: urlencoded,
-                      redirect: "follow",
-                    };
-
-                    fetch(
-                      "https://www.google.com/recaptcha/api/siteverify",
-                      requestOptions
-                    )
-                      .then((response) => response.text())
-                      .then((result) => console.log(result))
-                      .catch((error) => console.log("error", error));
+                    !reCaptRes ? setShow(true) : setShow(false);
                   }}
                 >
                   Enviar
