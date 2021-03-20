@@ -69,10 +69,10 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
             localStorage.clear();
             console.log(reCaptRes)
             if(reCaptRes){
+              setIsLoading(true);
               await Promise.resolve(loginUser(values, "/init"));
             }
             errors ? setIsError(true) : setIsError(false);
-            setIsLoading(false);
           } catch (err) {
             console.log(err)
             setIsLoading(false);
@@ -126,7 +126,7 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
                   kind="primary"
                   type="submit"
                   onClick={async () => {
-                    !reCaptRes ? setShow(true) : setShow(false);
+                    reCaptRes ? setShow(false) : setShow(true);
                   }}
                 >
                   Enviar
