@@ -33,7 +33,7 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
   let _reCaptchaRef = React.createRef();
 
   const handleChange = async(value) => {
-    let catResponse = await fetch("api/auth/toke-recaptcha", {
+    let catResponse = await fetch("https://damp-tor-32976.herokuapp.com/api/auth/toke-recaptcha", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -126,7 +126,7 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
                   kind="primary"
                   type="submit"
                   onClick={async () => {
-                    reCaptRes ? setShow(false) : setShow(true);
+                    !reCaptRes ? setShow(true) : setShow(false);
                   }}
                 >
                   Enviar

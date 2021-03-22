@@ -200,7 +200,7 @@ export const updateOneForm = (payload, redirectUrl, token) => {
 export const sendUserEmail = (email, token) => {
     return async(dispatch) => {
         try{
-            let response = await axios('https://damp-tor-32976.herokuapp.com//email/send', {
+            let response = await axios('https://damp-tor-32976.herokuapp.com/email/send', {
                 method:  'GET',
                 headers: {
                     "Content-type": "application/json",
