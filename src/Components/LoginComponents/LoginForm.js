@@ -25,28 +25,29 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
   const [show, setShow] = useState(false);
   const reRef = useRef();
 
-  useEffect(() => {
-    window.localStorage.clear();
-    setIsLoading(false);
-  }, [isLoading]);
-
   let _reCaptchaRef = React.createRef();
 
-  const handleChange = async(value) => {
-    console.log(value)
-    let catResponse = await fetch("https://damp-tor-32976.herokuapp.com/api/auth/toke-recaptcha", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        tokenRecapcha: value,
-      }),
-    });
-    let response = await catResponse.json();
-    await Promise.resolve(setReCaptRes(response.data.success));
-    
+  const handleChange = async (value) => {
+    try {
+      let catResponse = await fetch(
+        "https://damp-tor-32976.herokuapp.com/api/auth/toke-recaptcha",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            tokenRecapcha: value,
+          }),
+        }
+      );
+      let response = await catResponse.json();
+      await Promise.resolve(setReCaptRes(response.data.success))
+    } catch (error) {
+      throw error;
+    }
+
     // if value is null recaptcha expired
   };
 
@@ -68,19 +69,24 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
         onSubmit={async (values, actions, errors) => {
           try {
             localStorage.clear();
-            console.log(reCaptRes)
-            if(reCaptRes){
+            if (reCaptRes) {
               setIsLoading(true);
               await Promise.resolve(loginUser(values, "/init"));
             }
-            errors ? setIsError(true) : setIsError(false);
+            else {
+              setIsLoading(false);
+            }
+
+            if(err){
+              setIsLoading(false);
+            }
           } catch (err) {
-            console.log(err)
+            console.log(err);
             setIsLoading(false);
           }
         }}
       >
-        {({ values, validateForm }) => (
+        {({ values, validateForm, errors }) => (
           <>
             <TitleArticle>Iniciar sesión</TitleArticle>
             <Form>
@@ -127,7 +133,8 @@ const LoginForm = ({ loginUser, isLogged, err }) => {
                   kind="primary"
                   type="submit"
                   onClick={async () => {
-                    !reCaptRes ? setShow(true) : setShow(false);
+                    reCaptRes ? setShow(false) : setShow(true);
+                    console.log(reCaptRes)
                   }}
                 >
                   Enviar
